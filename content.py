@@ -575,6 +575,20 @@ BLOG_POSTS=[
 ]
 POSTS_BY_SLUG={p["slug"]:p for p in BLOG_POSTS}
 
+# Merge auto-generated posts (automation/posts/*.json) so the build includes them.
+import os as _os, glob as _glob, json as _json
+_AUTO=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"automation","posts")
+for _f in sorted(_glob.glob(_os.path.join(_AUTO,"*.json"))):
+    try:
+        _p=_json.load(open(_f,encoding="utf-8"))
+        _p.setdefault("emoji","📝"); _p.setdefault("read","8 min"); _p.setdefault("cat","Guide")
+        _p.setdefault("mod",_p.get("date","2026-01-01")); _p.setdefault("h1",_p.get("title",""))
+        if _p.get("slug") and _p["slug"] not in POSTS_BY_SLUG:
+            BLOG_POSTS.append(_p); POSTS_BY_SLUG[_p["slug"]]=_p
+    except Exception as _e:
+        print("  ! skipped auto post",_f,_e)
+BLOG_POSTS.sort(key=lambda x:x.get("date",""), reverse=True)  # newest first
+
 def _fmt_date(iso):
     months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     y,m,d=iso.split("-"); return f"{months[int(m)-1]} {int(d)}, {y}"

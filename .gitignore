@@ -1,5 +1,6 @@
 # Build tooling / not for production deploy
 previews/
+dist/
 __pycache__/
 *.pyc
 .env
