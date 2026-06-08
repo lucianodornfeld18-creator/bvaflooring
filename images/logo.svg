@@ -1,0 +1,9 @@
+<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>BVA Flooring</title>
+<g transform="translate(60,72) rotate(-45)">
+<rect x="-34" y="-34" width="30" height="30" rx="3" fill="#16335E"/>
+<rect x="4" y="-34" width="30" height="30" rx="3" fill="#16335E"/>
+<rect x="-34" y="4" width="30" height="30" rx="3" fill="#9EAAB8"/>
+<rect x="4" y="4" width="30" height="30" rx="3" fill="#9EAAB8"/></g>
+<g transform="translate(60,40)"><polygon points="0,-22 -38,16 -27,16 0,-11 27,16 38,16" fill="#C0843C"/></g>
+</svg>
