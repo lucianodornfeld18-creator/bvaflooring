@@ -26,7 +26,7 @@ FOUNDED    = "2020"           # founded ~6 years ago
 EXPERIENCE = "6+ years"
 STANDARD   = "BVA 52-Point Floor-Ready Standard"   # proprietary, named & numbered
 WA_MSG     = "Hi%20BVA%20Flooring%2C%20I%27d%20like%20a%20free%20flooring%20estimate."
-WEB3FORMS_KEY = ""   # paste your free key from web3forms.com to email leads to bvaservicecorporation@gmail.com
+WEB3FORMS_KEY = "ec8d14c8-69fd-4433-b7ed-23a54218333d"   # web3forms.com -> emails leads to bvaservicecorporation@gmail.com
 
 # ── Services ────────────────────────────────────────────────────────────────
 SERVICES = [
