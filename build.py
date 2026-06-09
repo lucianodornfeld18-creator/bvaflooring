@@ -158,7 +158,7 @@ CSS = """
 --sh-sm:0 1px 2px rgba(14,37,71,.06),0 1px 3px rgba(14,37,71,.10);
 --sh:0 6px 18px rgba(14,37,71,.10);--sh-lg:0 22px 48px rgba(14,37,71,.16);
 --fhead:'Sora',system-ui,sans-serif;--fbody:'Source Sans 3',system-ui,-apple-system,sans-serif;
---wrap:1180px;--ease:.25s cubic-bezier(.4,0,.2,1)}
+--wrap:1300px;--ease:.25s cubic-bezier(.4,0,.2,1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
 body{font-family:var(--fbody);font-size:16.5px;line-height:1.65;color:var(--text);background:var(--paper);overflow-x:hidden}
