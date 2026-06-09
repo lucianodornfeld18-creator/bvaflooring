@@ -204,7 +204,7 @@ p{margin:0 0 1rem}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:7px;color:var(--ink)}
 .burger svg{width:26px;height:26px}
 /* hero (split, left-aligned + estimate card) */
-.hero{position:relative;background:linear-gradient(160deg,#0E2547 0%,#16335E 60%,#1d4274 100%);color:#fff;overflow:hidden}
+.hero{position:relative;background:linear-gradient(160deg,#0E2547 0%,#16335E 60%,#1d4274 100%);color:#fff;overflow:hidden;padding:0}
 .hero::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0h30v30H0zM30 30h30v30H30z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");opacity:.6}
 .hero-grid{position:relative;z-index:1;max-width:var(--wrap);margin:0 auto;padding:3.6rem 22px 3.4rem;display:grid;grid-template-columns:1.25fr .9fr;gap:2.6rem;align-items:center}
 .hero h1{color:#fff;margin-bottom:1rem}
