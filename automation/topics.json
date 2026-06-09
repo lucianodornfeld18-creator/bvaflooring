@@ -1,18 +1,98 @@
 [
- {"slug":"hardwood-flooring-cost-sarasota","title":"How Much Does Hardwood Flooring Cost in Sarasota, FL? (2026)","funnel":"/hardwood-flooring/sarasota/","status":"queued"},
- {"slug":"tile-installation-cost-tampa","title":"How Much Does Tile Installation Cost in Tampa, FL? (2026)","funnel":"/tile-installation/tampa/","status":"queued"},
- {"slug":"laminate-vs-vinyl-plank-florida-rentals","title":"Laminate vs. Vinyl Plank: Best Floor for Florida Rentals?","funnel":"/vinyl-plank-flooring/","status":"queued"},
- {"slug":"signs-your-florida-subfloor-has-moisture","title":"5 Signs Your Florida Subfloor Has a Moisture Problem","funnel":"/floor-repair/","status":"queued"},
- {"slug":"true-cost-of-cheap-flooring-installation","title":"The Real Cost of Cheap Flooring Installation in Florida","funnel":"/about/","status":"queued"},
- {"slug":"how-long-does-flooring-last-florida","title":"How Long Does Each Floor Type Last in Florida Humidity?","funnel":"/hardwood-flooring/","status":"queued"},
- {"slug":"carpet-to-hardwood-stairs-cost","title":"Carpet to Hardwood Stairs: What It Costs & Why It's Worth It","funnel":"/stair-treads/","status":"queued"},
- {"slug":"vinyl-plank-flooring-cost-lakewood-ranch","title":"How Much Does Vinyl Plank Cost in Lakewood Ranch, FL?","funnel":"/vinyl-plank-flooring/lakewood-ranch/","status":"queued"},
- {"slug":"engineered-vs-solid-hardwood-florida","title":"Engineered vs. Solid Hardwood in Florida: Which to Buy?","funnel":"/hardwood-flooring/","status":"queued"},
- {"slug":"best-flooring-airbnb-rental-tampa-bay","title":"The Best Flooring for an Airbnb Rental in Tampa Bay","funnel":"/vinyl-plank-flooring/","status":"queued"},
- {"slug":"tile-vs-vinyl-plank-florida-bathrooms","title":"Tile vs. Vinyl Plank for Florida Bathrooms & Kitchens","funnel":"/tile-installation/","status":"queued"},
- {"slug":"floor-repair-cost-bradenton","title":"How Much Does Floor Repair Cost in Bradenton, FL? (2026)","funnel":"/floor-repair/bradenton/","status":"queued"},
- {"slug":"why-florida-floors-cup-gap-buckle","title":"Why Florida Floors Cup, Gap & Buckle (and How to Prevent It)","funnel":"/floor-repair/","status":"queued"},
- {"slug":"laminate-flooring-cost-venice","title":"How Much Does Laminate Flooring Cost in Venice, FL? (2026)","funnel":"/laminate-flooring/venice/","status":"queued"},
- {"slug":"best-waterproof-flooring-florida-2026","title":"The Best Waterproof Flooring for Florida Homes in 2026","funnel":"/vinyl-plank-flooring/","status":"queued"},
- {"slug":"tile-installation-cost-st-petersburg","title":"How Much Does Tile Cost in St. Petersburg, FL? (2026)","funnel":"/tile-installation/st-petersburg/","status":"queued"}
+ {
+  "slug": "hardwood-flooring-cost-sarasota",
+  "title": "How Much Does Hardwood Flooring Cost in Sarasota, FL? (2026)",
+  "funnel": "/hardwood-flooring/sarasota/",
+  "status": "published"
+ },
+ {
+  "slug": "tile-installation-cost-tampa",
+  "title": "How Much Does Tile Installation Cost in Tampa, FL? (2026)",
+  "funnel": "/tile-installation/tampa/",
+  "status": "queued"
+ },
+ {
+  "slug": "laminate-vs-vinyl-plank-florida-rentals",
+  "title": "Laminate vs. Vinyl Plank: Best Floor for Florida Rentals?",
+  "funnel": "/vinyl-plank-flooring/",
+  "status": "queued"
+ },
+ {
+  "slug": "signs-your-florida-subfloor-has-moisture",
+  "title": "5 Signs Your Florida Subfloor Has a Moisture Problem",
+  "funnel": "/floor-repair/",
+  "status": "queued"
+ },
+ {
+  "slug": "true-cost-of-cheap-flooring-installation",
+  "title": "The Real Cost of Cheap Flooring Installation in Florida",
+  "funnel": "/about/",
+  "status": "queued"
+ },
+ {
+  "slug": "how-long-does-flooring-last-florida",
+  "title": "How Long Does Each Floor Type Last in Florida Humidity?",
+  "funnel": "/hardwood-flooring/",
+  "status": "queued"
+ },
+ {
+  "slug": "carpet-to-hardwood-stairs-cost",
+  "title": "Carpet to Hardwood Stairs: What It Costs & Why It's Worth It",
+  "funnel": "/stair-treads/",
+  "status": "queued"
+ },
+ {
+  "slug": "vinyl-plank-flooring-cost-lakewood-ranch",
+  "title": "How Much Does Vinyl Plank Cost in Lakewood Ranch, FL?",
+  "funnel": "/vinyl-plank-flooring/lakewood-ranch/",
+  "status": "queued"
+ },
+ {
+  "slug": "engineered-vs-solid-hardwood-florida",
+  "title": "Engineered vs. Solid Hardwood in Florida: Which to Buy?",
+  "funnel": "/hardwood-flooring/",
+  "status": "queued"
+ },
+ {
+  "slug": "best-flooring-airbnb-rental-tampa-bay",
+  "title": "The Best Flooring for an Airbnb Rental in Tampa Bay",
+  "funnel": "/vinyl-plank-flooring/",
+  "status": "queued"
+ },
+ {
+  "slug": "tile-vs-vinyl-plank-florida-bathrooms",
+  "title": "Tile vs. Vinyl Plank for Florida Bathrooms & Kitchens",
+  "funnel": "/tile-installation/",
+  "status": "queued"
+ },
+ {
+  "slug": "floor-repair-cost-bradenton",
+  "title": "How Much Does Floor Repair Cost in Bradenton, FL? (2026)",
+  "funnel": "/floor-repair/bradenton/",
+  "status": "queued"
+ },
+ {
+  "slug": "why-florida-floors-cup-gap-buckle",
+  "title": "Why Florida Floors Cup, Gap & Buckle (and How to Prevent It)",
+  "funnel": "/floor-repair/",
+  "status": "queued"
+ },
+ {
+  "slug": "laminate-flooring-cost-venice",
+  "title": "How Much Does Laminate Flooring Cost in Venice, FL? (2026)",
+  "funnel": "/laminate-flooring/venice/",
+  "status": "queued"
+ },
+ {
+  "slug": "best-waterproof-flooring-florida-2026",
+  "title": "The Best Waterproof Flooring for Florida Homes in 2026",
+  "funnel": "/vinyl-plank-flooring/",
+  "status": "queued"
+ },
+ {
+  "slug": "tile-installation-cost-st-petersburg",
+  "title": "How Much Does Tile Cost in St. Petersburg, FL? (2026)",
+  "funnel": "/tile-installation/st-petersburg/",
+  "status": "queued"
+ }
 ]
