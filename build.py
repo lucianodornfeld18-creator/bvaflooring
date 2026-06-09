@@ -416,6 +416,7 @@ def header():
 <li><a href="/">Home</a></li>
 <li><a href="/hardwood-flooring/" data-t>Services</a><div class="drop">{svc_links}</div></li>
 <li><a href="/bradenton/" data-t>Service Areas</a><div class="drop">{area_links}</div></li>
+<li><a href="/blog/">Blog</a></li>
 <li><a href="/about/">About</a></li>
 <li><a href="/contact/">Contact</a></li></ul>
 <div class="nav-cta">
