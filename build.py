@@ -26,6 +26,7 @@ FOUNDED    = "2020"           # founded ~6 years ago
 EXPERIENCE = "6+ years"
 STANDARD   = "BVA 52-Point Floor-Ready Standard"   # proprietary, named & numbered
 WA_MSG     = "Hi%20BVA%20Flooring%2C%20I%27d%20like%20a%20free%20flooring%20estimate."
+WEB3FORMS_KEY = ""   # paste your free key from web3forms.com to email leads to bvaservicecorporation@gmail.com
 
 # ── Services ────────────────────────────────────────────────────────────────
 SERVICES = [
@@ -219,7 +220,10 @@ p{margin:0 0 1rem}
 .ecard .sub{font-size:.9rem;color:var(--muted);margin-bottom:1.1rem}
 .ecard label{display:block;font-size:.78rem;font-weight:700;font-family:var(--fhead);color:var(--ink-2);margin:.6rem 0 .25rem;text-transform:uppercase;letter-spacing:.05em}
 .ecard input,.ecard select{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--fbody);font-size:.95rem;background:var(--paper);color:var(--text)}
-.ecard input:focus,.ecard select:focus{outline:none;border-color:var(--copper)}
+.ecard textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--fbody);font-size:.95rem;background:var(--paper);color:var(--text);min-height:88px;resize:vertical}
+.ecard input:focus,.ecard select:focus,.ecard textarea:focus{outline:none;border-color:var(--copper)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+@media(max-width:560px){.frow{grid-template-columns:1fr}}
 .ecard .btn{width:100%;margin-top:1rem}
 .ecard .fine{font-size:.76rem;color:var(--muted);text-align:center;margin:.7rem 0 0}
 /* proof strip */

@@ -201,6 +201,43 @@ def svc_city_faqs(svc, city):
     ]
 
 # ── Pages ───────────────────────────────────────────────────────────────────
+FOUND_OPTS = ["— How did you find us? —","Google Search","Google Maps","Facebook / Instagram",
+              "Friend or family referral","Saw your work / drove by","Nextdoor","Yelp / Angi / Thumbtack","Other"]
+
+def quote_form(compact=False):
+    from build import WEB3FORMS_KEY
+    svc_opts="".join(f"<option>{s['name']}</option>" for s in SERVICES)
+    city_opts="<option value=''>— Select —</option>"+"".join(f"<option>{nm}</option>" for _,nm in AREAS)
+    found_opts="".join((f"<option value=''>{o}</option>" if o.startswith('—') else f"<option>{o}</option>") for o in FOUND_OPTS)
+    if WEB3FORMS_KEY:
+        top=(f'<form action="https://api.web3forms.com/submit" method="POST">'
+             f'<input type="hidden" name="access_key" value="{WEB3FORMS_KEY}">'
+             f'<input type="hidden" name="subject" value="New Quote Request — {BRAND}">'
+             f'<input type="hidden" name="from_name" value="{BRAND} Website">'
+             f'<input type="hidden" name="redirect" value="https://{DOMAIN}/thanks/">'
+             f'<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">')
+    else:
+        top='<form action="/thanks/" method="get">'
+    if compact:
+        return (top+
+          '<label>Name</label><input name="name" placeholder="Your name" required autocomplete="name">'
+          f'<label>Phone</label><input name="phone" type="tel" placeholder="{PHONE_DISP}" required autocomplete="tel">'
+          f'<label>Service Needed</label><select name="service">{svc_opts}</select>'
+          f'<label>How did you find us?</label><select name="found">{found_opts}</select>'
+          '<button class="btn btn-primary" type="submit">Request My Estimate</button>'
+          f'<p class="fine">Prefer to talk now? Call or text {PHONE_DISP}</p></form>')
+    return (top+
+      '<div class="frow"><div><label>Name</label><input name="name" placeholder="Your name" required autocomplete="name"></div>'
+      f'<div><label>Phone</label><input name="phone" type="tel" placeholder="{PHONE_DISP}" required autocomplete="tel"></div></div>'
+      '<label>Email</label><input name="email" type="email" placeholder="you@email.com" autocomplete="email">'
+      f'<div class="frow"><div><label>City</label><select name="city">{city_opts}</select></div>'
+      f'<div><label>Service Needed</label><select name="service">{svc_opts}</select></div></div>'
+      '<label>Approx. square footage <span style="text-transform:none;font-weight:400;color:var(--muted)">(optional)</span></label><input name="sqft" placeholder="e.g. 1,200 sq ft">'
+      '<label>Project details</label><textarea name="message" placeholder="Rooms, timeline, products you have in mind, current floor..."></textarea>'
+      f'<label>How did you hear about us?</label><select name="found">{found_opts}</select>'
+      '<button class="btn btn-primary" type="submit">Send My Request</button>'
+      f'<p class="fine">Prefer WhatsApp? <a href="{wa_link()}" target="_blank" rel="noopener" style="color:var(--copper-dk);font-weight:700">Message us →</a> · We never spam.</p></form>')
+
 def page_home():
     title=f"Flooring Installation Bradenton FL · Tampa Bay | {BRAND}"
     desc=("Hardwood, vinyl plank, tile, laminate & stair installation in Bradenton, Sarasota & Tampa Bay, FL. "
@@ -240,12 +277,7 @@ def page_home():
 <a href="tel:{PHONE_E164}" class="btn btn-ghost">{SVG_PHONE} {PHONE_DISP}</a></div>
 <div class="hero-trust"><span>Licensed &amp; insured</span><span>{EXPERIENCE} experience</span><span>52-Point Standard</span><span>{STARS} workmanship</span></div></div>
 <div class="ecard"><h3>Free Flooring Estimate</h3><p class="sub">No obligation · reply within 24 hours</p>
-<form action="/thanks/" method="get" onsubmit="return true">
-<label>Name</label><input name="name" placeholder="Your name" required>
-<label>Phone</label><input name="phone" type="tel" placeholder="{PHONE_DISP}" required>
-<label>Project</label><select name="service"><option>Hardwood Flooring</option><option>Luxury Vinyl Plank</option><option>Tile Installation</option><option>Laminate Flooring</option><option>Stair Treads</option><option>Floor Repair</option></select>
-<button class="btn btn-primary" type="submit">Request My Estimate</button>
-<p class="fine">Prefer to talk now? Call or text {PHONE_DISP}</p></form></div></div></section>
+{quote_form(compact=True)}</div></div></section>
 
 <div class="proof"><div class="wrap"><div class="proof-row">
 <div><b class="cu">52-Point</b>Floor-Ready Standard</div>
@@ -439,14 +471,7 @@ def page_contact():
 <h1>Get Your <b>Free Estimate</b></h1><p>Call, text, or WhatsApp — we reply within 24 hours, 7 days a week. Free measurement, no obligation.</p></div></section>
 <section class="intro"><div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;max-width:1000px;align-items:start">
 <div class="ecard" id="quote" style="box-shadow:var(--sh-lg)"><h3>Request a Free Quote</h3><p class="sub">Reply within 24 hours · no obligation</p>
-<form action="/thanks/" method="get">
-<label>Name</label><input name="name" placeholder="Your name" required>
-<label>Phone</label><input name="phone" type="tel" placeholder="{PHONE_DISP}" required>
-<label>Email</label><input name="email" type="email" placeholder="you@email.com">
-<label>Service</label><select name="service"><option>Hardwood Flooring</option><option>Luxury Vinyl Plank</option><option>Tile Installation</option><option>Laminate Flooring</option><option>Stair Treads</option><option>Floor Repair</option></select>
-<label>City</label><select name="city">{city_opts}</select>
-<button class="btn btn-primary" type="submit">Send My Request</button>
-<p class="fine">Prefer WhatsApp? <a href="{wa_link()}" target="_blank" rel="noopener" style="color:var(--copper-dk);font-weight:700">Message us →</a></p></form></div>
+{quote_form(compact=False)}</div>
 <div><h2 style="margin-bottom:1rem">Talk to a Real Person</h2>
 <p style="color:var(--muted)">No call centers, no phone trees. You reach the people who actually install your floor.</p>
 <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1.4rem">
