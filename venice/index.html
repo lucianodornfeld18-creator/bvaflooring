@@ -118,6 +118,15 @@ section{padding:4.2rem 0}
 .svc-card h3{color:var(--ink-2);margin-bottom:.5rem}
 .svc-card p{color:var(--muted);font-size:.96rem;margin-bottom:1rem}
 .svc-card .more{font-family:var(--fhead);font-weight:600;font-size:.9rem;color:var(--copper-dk)}
+/* project gallery */
+.projsec{padding:4.4rem 0}
+.projgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:1.2rem}
+.proj{margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--sh-sm);transition:transform var(--ease),box-shadow var(--ease)}
+.proj:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.proj img{display:block;width:100%;height:230px;object-fit:cover;background:var(--ink-soft)}
+.proj figcaption{padding:.85rem 1rem;display:flex;flex-direction:column;gap:2px}
+.proj figcaption b{font-family:var(--fhead);font-weight:600;color:var(--ink-2);font-size:.98rem}
+.proj figcaption span{color:var(--muted);font-size:.85rem}
 /* why / features */
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
 .feat{background:var(--sand);border-radius:16px;padding:1.6rem}

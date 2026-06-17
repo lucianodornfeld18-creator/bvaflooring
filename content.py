@@ -223,6 +223,7 @@ def quote_form(compact=False):
           '<label>Name</label><input name="name" placeholder="Your name" required autocomplete="name">'
           f'<label>Phone</label><input name="phone" type="tel" placeholder="{PHONE_DISP}" required autocomplete="tel">'
           f'<label>Service Needed</label><select name="service">{svc_opts}</select>'
+          '<label>Tell us about your project</label><textarea name="message" placeholder="Rooms, approx. square footage, timeline, products you have in mind, current floor..."></textarea>'
           f'<label>How did you find us?</label><select name="found">{found_opts}</select>'
           '<button class="btn btn-primary" type="submit">Request My Estimate</button>'
           f'<p class="fine">Prefer to talk now? Call or text {PHONE_DISP}</p></form>')
@@ -233,15 +234,60 @@ def quote_form(compact=False):
       f'<div class="frow"><div><label>City</label><select name="city">{city_opts}</select></div>'
       f'<div><label>Service Needed</label><select name="service">{svc_opts}</select></div></div>'
       '<label>Approx. square footage <span style="text-transform:none;font-weight:400;color:var(--muted)">(optional)</span></label><input name="sqft" placeholder="e.g. 1,200 sq ft">'
-      '<label>Project details</label><textarea name="message" placeholder="Rooms, timeline, products you have in mind, current floor..."></textarea>'
+      '<label>Tell us about your project</label><textarea name="message" placeholder="Rooms, timeline, products you have in mind, current floor..."></textarea>'
       f'<label>How did you hear about us?</label><select name="found">{found_opts}</select>'
       '<button class="btn btn-primary" type="submit">Send My Request</button>'
       f'<p class="fine">Prefer WhatsApp? <a href="{wa_link()}" target="_blank" rel="noopener" style="color:var(--copper-dk);font-weight:700">Message us →</a> · We never spam.</p></form>')
 
+# ── Recent project photos (real BVA installs; SEO/GEO/AEO filenames + alt) ───
+# tuple: (service_slug, filename, alt_text, caption, city)
+PROJECTS = [
+ ("hardwood-flooring","hardwood-flooring-installation-bradenton-fl.jpg",
+   "Solid hardwood floor installation in a Bradenton, FL home by BVA Flooring","Solid Hardwood Installation","Bradenton, FL"),
+ ("hardwood-flooring","engineered-hardwood-flooring-lakewood-ranch-fl.jpg",
+   "Engineered hardwood flooring installed in a Lakewood Ranch, FL living room","Engineered Hardwood","Lakewood Ranch, FL"),
+ ("hardwood-flooring","hardwood-floor-installation-sarasota-fl.jpg",
+   "Hardwood floor installation in a Sarasota, FL home by BVA Flooring","Hardwood Floor Install","Sarasota, FL"),
+ ("vinyl-plank-flooring","luxury-vinyl-plank-flooring-sarasota-fl.jpg",
+   "100% waterproof luxury vinyl plank flooring installed in a Sarasota, FL home","Luxury Vinyl Plank","Sarasota, FL"),
+ ("vinyl-plank-flooring","waterproof-vinyl-plank-installation-tampa-fl.jpg",
+   "Waterproof luxury vinyl plank flooring installation in Tampa, FL","Waterproof Vinyl Plank","Tampa, FL"),
+ ("vinyl-plank-flooring","luxury-vinyl-plank-flooring-venice-fl.jpg",
+   "Luxury vinyl plank (LVP) flooring in a Venice, FL home","Luxury Vinyl Plank","Venice, FL"),
+ ("vinyl-plank-flooring","wood-look-vinyl-plank-flooring-st-petersburg-fl.jpg",
+   "Wood-look luxury vinyl plank flooring in a St. Petersburg, FL room","Wood-Look Vinyl Plank","St. Petersburg, FL"),
+ ("vinyl-plank-flooring","glue-down-vinyl-plank-flooring-palmetto-fl.jpg",
+   "Glue-down luxury vinyl plank flooring installed in Palmetto, FL","Glue-Down Vinyl Plank","Palmetto, FL"),
+ ("vinyl-plank-flooring","glue-down-luxury-vinyl-flooring-parrish-fl.jpg",
+   "Glue-down luxury vinyl flooring in a Parrish, FL home","Glue-Down Luxury Vinyl","Parrish, FL"),
+ ("stair-treads","vinyl-stair-tread-installation-bradenton-fl.jpg",
+   "Vinyl stair tread installation on a staircase in Bradenton, FL","Vinyl Stair Treads","Bradenton, FL"),
+ ("stair-treads","waterproof-vinyl-stair-treads-tampa-fl.jpg",
+   "Waterproof vinyl stair treads installed in a Tampa, FL home","Vinyl Stair Treads","Tampa, FL"),
+ ("stair-treads","vinyl-stair-tread-installation-lakewood-ranch-fl.jpg",
+   "Vinyl stair tread and riser installation in Lakewood Ranch, FL","Vinyl Stair Treads","Lakewood Ranch, FL"),
+]
+
+def projects_gallery(slug=None, limit=None, heading=None, sub=None, bg=False):
+    items=[p for p in PROJECTS if slug is None or p[0]==slug]
+    if not items: return ""
+    if limit: items=items[:limit]
+    cards="".join(
+      f'<figure class="proj"><img src="/images/projects/{f}" alt="{alt}" loading="lazy" decoding="async" width="800" height="600">'
+      f'<figcaption><b>{cap}</b><span>{city}</span></figcaption></figure>'
+      for _,f,alt,cap,city in items)
+    h=heading or "Recent Flooring Projects Across Tampa Bay"
+    s=sub or "Real installs from Bradenton to St. Petersburg — hardwood, waterproof luxury vinyl plank, and stair treads."
+    style=' style="background:var(--sand)"' if bg else ''
+    return (f'<section class="projsec"{style}><div class="wrap"><div class="shead">'
+            f'<span class="eyebrow">Our Work</span><h2>{h}</h2><p>{s}</p></div>'
+            f'<div class="projgrid">{cards}</div></div></section>')
+
 def page_home():
     title=f"Flooring Installation Bradenton FL · Tampa Bay | {BRAND}"
-    desc=("Hardwood, vinyl plank, tile, laminate & stair installation in Bradenton, Sarasota & Tampa Bay, FL. "
-          "Licensed, insured — free 24-hr estimate from BVA Flooring.")
+    desc=("Flooring installation in Bradenton, Sarasota & Tampa Bay, FL — hardwood, waterproof "
+          "vinyl plank, tile, laminate & stair treads. Licensed, insured, built for Florida "
+          f"humidity. Free 24-hr estimate · {PHONE_DISP}.")
     svc_cards="".join(
         f'<a class="svc-card" href="/{s["slug"]}/"><div class="svc-ic">{s["icon"]}</div>'
         f'<h3>{s["name"]}</h3><p>{s["blurb"]}</p><span class="more">Explore {s["short"]} →</span></a>'
@@ -291,7 +337,9 @@ def page_home():
 <h2>Flooring Services Across Tampa Bay</h2><p>Six core services, one standard of work. Click any service for pricing, scope, and our full process.</p></div>
 <div class="svc-grid">{svc_cards}</div></div></section>
 
-<section class="intro" style="background:var(--sand)"><div class="wrap"><div class="shead"><span class="eyebrow">Why BVA</span>
+{projects_gallery(limit=8, bg=True)}
+
+<section class="intro"><div class="wrap"><div class="shead"><span class="eyebrow">Why BVA</span>
 <h2>A New Name, Built on an Old-School Standard</h2><p>BVA is a young company on purpose — lean, local, and obsessive about the parts other installers skip.</p></div>
 <div class="feat-grid">{feat_html}</div></div></section>
 
@@ -331,6 +379,7 @@ def page_service_index(svc):
 <p><strong>{BRAND}</strong> installs {svc['short'].lower()} the way it should be done on the Gulf Coast: moisture-tested, acclimated, and finished by one accountable crew. Below you'll find transparent pricing and the exact scope we cover — then pick your city for local detail.</p></div></div></section>
 {included_section(svc)}
 {price_table(svc, "Tampa Bay")}
+{projects_gallery(slug=svc['slug'], heading=f"Recent {svc['name']} Projects in Tampa Bay", bg=True)}
 {checklist_section()}
 <section><div class="wrap"><div class="shead"><span class="eyebrow">Choose Your City</span>
 <h2>{svc['name']} Near You</h2><p>Local pages with neighborhood-level detail and city-specific pricing.</p></div>
