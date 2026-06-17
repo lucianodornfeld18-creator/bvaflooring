@@ -268,9 +268,11 @@ PROJECTS = [
    "Vinyl stair tread and riser installation in Lakewood Ranch, FL","Vinyl Stair Treads","Lakewood Ranch, FL"),
 ]
 
-def projects_gallery(slug=None, limit=None, heading=None, sub=None, bg=False):
+def projects_gallery(slug=None, limit=None, heading=None, sub=None, bg=False, prefer_city=None):
     items=[p for p in PROJECTS if slug is None or p[0]==slug]
     if not items: return ""
+    if prefer_city:
+        items=sorted(items, key=lambda p: 0 if p[4].split(",")[0]==prefer_city else 1)
     if limit: items=items[:limit]
     cards="".join(
       f'<figure class="proj"><img src="/images/projects/{f}" alt="{alt}" loading="lazy" decoding="async" width="800" height="600">'
@@ -415,6 +417,7 @@ def page_service_city(svc, city_slug):
 <p>From <strong>{c['hoods'][0]}</strong> and <strong>{c['hoods'][1]}</strong> to <strong>{c['hoods'][2]}</strong> and beyond, every {city} job runs through our {STANDARD} — documented moisture readings, a 48–72 hour acclimation window, and a written workmanship warranty when we're done.</p></div></div></section>
 {included_section(svc)}
 {price_table(svc, city)}
+{projects_gallery(slug=svc['slug'], heading=f"Recent {svc['short']} Projects in {city} &amp; Tampa Bay", prefer_city=city, bg=True)}
 {checklist_section()}
 <section class="neighborhoods" style="background:var(--sand);padding:4.2rem 0"><div class="wrap"><div class="shead">
 <span class="eyebrow">{city} Coverage</span><h2>Neighborhoods &amp; Communities We Serve in {city}</h2>
@@ -467,6 +470,7 @@ def page_city_hub(city_slug):
 <p><strong>{BRAND}</strong> serves all of {city} and {c['county']} — near {c['landmarks']}. Pick a service below for {city}-specific pricing, scope, and our full installation process.</p></div></div></section>
 <section><div class="wrap"><div class="shead"><span class="eyebrow">{city} Services</span>
 <h2>What We Install in {city}</h2></div><div class="svc-grid">{svc_cards}</div></div></section>
+{projects_gallery(limit=6, heading=f"Recent Flooring Projects in {city} &amp; the Gulf Coast", sub=f"A sample of our hardwood, luxury vinyl plank, and stair work across {c['county']}.", prefer_city=city)}
 <section class="neighborhoods" style="background:var(--sand);padding:4.2rem 0"><div class="wrap"><div class="shead">
 <span class="eyebrow">{city} Coverage</span><h2>{city} Neighborhoods We Serve</h2></div>
 <div class="nbhd">{hoods}</div><div class="zips">{zips}</div></div></section>
