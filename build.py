@@ -456,7 +456,7 @@ def footer():
 </div></div>
 <div class="fbot">
 <div>© 2026 {LEGAL} ({BRAND}). All rights reserved. · Licensed &amp; insured · Locally owned.</div>
-<div><a href="/about/">About</a> · <a href="/faq/">FAQ</a> · <a href="/financing/">Financing</a> · <a href="/warranty/">Warranty</a> · <a href="/contact/">Contact</a></div>
+<div><a href="/about/">About</a> · <a href="/faq/">FAQ</a> · <a href="/warranty/">Warranty</a> · <a href="/contact/">Contact</a></div>
 </div></div></footer>"""
 
 def wa_float():
@@ -559,7 +559,6 @@ def main():
     write("/contact/index.html", C.page_contact())
     write("/thanks/index.html", C.page_thanks())
     write("/faq/index.html", C.page_faq())
-    write("/financing/index.html", C.page_financing())
     write("/warranty/index.html", C.page_warranty())
     write("/404.html", C.page_404())
     for s in SERVICES:

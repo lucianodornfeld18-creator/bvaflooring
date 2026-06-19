@@ -753,8 +753,6 @@ FAQ_HUB=[
    "As a 2026 guide: luxury vinyl plank runs about $5–$9/sq ft installed, laminate $4.50–$8.50, hardwood $9–$18, porcelain tile $9–$20, and stair treads $80–$240 per step. Your real number depends on the product and how much subfloor prep your home needs."),
   ("Why won't you give an exact price over the phone?",
    "Because an honest price needs a measurement. Square footage, subfloor condition, tear-out, and layout all move the number. Anyone quoting an exact total sight-unseen is guessing — we send a written, itemized estimate after a free measurement instead."),
-  ("Do you offer financing?",
-   'Yes — we offer flexible payment options so you can spread the cost of your project. See our <a href="/financing/">financing page</a> or ask during your free estimate.'),
   ("How does payment work?",
    "Typically a deposit at signing to reserve your install date and order materials, with the balance due when the job passes our final 52-point inspection. Everything is in writing up front — no surprise upcharges mid-job."),
  ]),
@@ -794,7 +792,7 @@ def _faq_schema(qas):
 def page_faq():
     title=f"Flooring FAQ | Cost, Timelines & Warranty · {BRAND}"
     desc=("Answers to common flooring questions in Bradenton, Sarasota & Tampa Bay — costs, materials, "
-          "installation timelines, financing, and warranty from BVA Flooring.")[:158]
+          "installation timelines, and warranty from BVA Flooring.")[:158]
     bc=[("Home","/"),("FAQ",None)]
     all_qa=[qa for _,qas in FAQ_HUB for qa in qas]
     secs=""
@@ -806,33 +804,8 @@ def page_faq():
                   sc_breadcrumb(bc), _faq_schema(all_qa))
     return (head(title,desc,"/faq/") + header() + crumbs(bc) +
      f"""<section class="phero"><div class="wrap"><span class="eyebrow">FAQ</span>
-<h1>Flooring Questions, <b>Answered</b></h1><p>Straight answers on cost, materials, timelines, financing, and warranty for Gulf-Coast homes. Don't see your question? Call or WhatsApp {PHONE_DISP}.</p></div></section>
+<h1>Flooring Questions, <b>Answered</b></h1><p>Straight answers on cost, materials, timelines, installation, and warranty for Gulf-Coast homes. Don't see your question? Call or WhatsApp {PHONE_DISP}.</p></div></section>
 {secs}
-{wa_banner()}
-{final_cta()}
-{footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
-
-def page_financing():
-    title=f"Flooring Financing | Flexible Payment Options · {BRAND}"
-    desc=("Flexible payment options for flooring installation in Bradenton & Tampa Bay, FL. "
-          "Clear deposit structure, no surprise upcharges. Free estimate from BVA Flooring.")[:158]
-    bc=[("Home","/"),("Financing",None)]
-    faqs=[
-     ("Do you offer financing for flooring?","Yes. We offer flexible payment options so you can move forward now and spread the cost of your project. Ask about current options during your free estimate."),
-     ("How much deposit do you require?","Typically a deposit at signing to reserve your install date and order materials, with the balance due when the job passes our final 52-point inspection."),
-     ("Are there upfront or hidden fees?","No. Your written estimate is itemized — material, labor, prep, and haul-away — so the price you approve is the price you pay."),
-    ]
-    faq_html,faq_schema=faq_block(faqs)
-    schema=jsonld(sc_localbiz("/financing/","Flooring financing and flexible payment options in Bradenton and Tampa Bay, FL."),
-                  sc_breadcrumb(bc), faq_schema)
-    return (head(title,desc,"/financing/") + header() + crumbs(bc) +
-     f"""<section class="phero"><div class="wrap"><span class="eyebrow">Financing</span>
-<h1>Flexible Ways to <b>Pay for Your Floor</b></h1><p>Get the floor you want now and spread the cost — with clear, written pricing and no surprise upcharges.</p>
-<div class="phero-trust"><span>Written, itemized pricing</span><span>Deposit + balance on completion</span><span>Free 24-hr estimate</span></div></div></section>
-<section class="intro"><div class="wrap"><div class="prose">
-<p>A new floor is an investment, and paying for it shouldn't be stressful. <strong>{BRAND}</strong> keeps payment simple and transparent: you approve a written, itemized estimate up front, put down a deposit to schedule your install and order materials, and pay the balance only when the job passes our {STANDARD}.</p>
-<p>Want to spread the cost further? Ask about flexible payment options during your free estimate — we'll walk you through what's available for your project, with no pressure and no hidden fees.</p></div></div></section>
-<section class="faqs"><div class="wrap"><div class="shead"><span class="eyebrow">Financing FAQ</span><h2>Common Questions</h2></div>{faq_html}</div></section>
 {wa_banner()}
 {final_cta()}
 {footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
@@ -926,7 +899,7 @@ def sitemap_xml():
     urls.append(("/blog/","0.6","weekly"))
     for p in BLOG_POSTS: urls.append((f"/blog/{p['slug']}/","0.6","monthly"))
     urls += [("/about/","0.5","monthly"),("/contact/","0.7","monthly"),
-             ("/faq/","0.6","monthly"),("/financing/","0.5","monthly"),("/warranty/","0.5","monthly")]
+             ("/faq/","0.6","monthly"),("/warranty/","0.5","monthly")]
     body="".join(f"  <url><loc>https://{DOMAIN}{p}</loc><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n"
                  for p,pr,cf in urls)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
