@@ -42,6 +42,8 @@ SERVICES = [
      "blurb":"Carpet-to-wood stair conversions and retreads — solid, quiet, code-minded steps that match your floors."},
     {"slug":"floor-repair","name":"Floor Repair & Replacement","short":"Floor Repair","icon":"🛠",
      "blurb":"Water-damaged boards, hollow tile, squeaks, and failed seams — diagnosed and fixed without ripping out the whole room."},
+    {"slug":"hardwood-refinishing","name":"Hardwood Refinishing","short":"Refinishing","icon":"✨",
+     "blurb":"Sand, repair, recolor, and reseal tired hardwood back to new — gaps, scratches, and worn finish gone without a full replacement."},
 ]
 SVC = {s["slug"]: s for s in SERVICES}
 
@@ -426,6 +428,7 @@ def header():
 <li><a href="/hardwood-flooring/" data-t>Services</a><div class="drop">{svc_links}</div></li>
 <li><a href="/bradenton/" data-t>Service Areas</a><div class="drop">{area_links}</div></li>
 <li><a href="/blog/">Blog</a></li>
+<li><a href="/faq/">FAQ</a></li>
 <li><a href="/about/">About</a></li>
 <li><a href="/contact/">Contact</a></li></ul>
 <div class="nav-cta">
@@ -453,7 +456,7 @@ def footer():
 </div></div>
 <div class="fbot">
 <div>© 2026 {LEGAL} ({BRAND}). All rights reserved. · Licensed &amp; insured · Locally owned.</div>
-<div><a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/hardwood-flooring/">Hardwood</a> · <a href="/vinyl-plank-flooring/">Vinyl Plank</a></div>
+<div><a href="/about/">About</a> · <a href="/faq/">FAQ</a> · <a href="/financing/">Financing</a> · <a href="/warranty/">Warranty</a> · <a href="/contact/">Contact</a></div>
 </div></div></footer>"""
 
 def wa_float():
@@ -550,10 +553,14 @@ def main():
     write_raw("_headers", C.headers_file())
     write_raw("_redirects", C.redirects_file())
     write_raw("sitemap.xml", C.sitemap_xml())
+    write_raw("llms.txt", C.llms_txt())
     write("/index.html", C.page_home())
     write("/about/index.html", C.page_about())
     write("/contact/index.html", C.page_contact())
     write("/thanks/index.html", C.page_thanks())
+    write("/faq/index.html", C.page_faq())
+    write("/financing/index.html", C.page_financing())
+    write("/warranty/index.html", C.page_warranty())
     write("/404.html", C.page_404())
     for s in SERVICES:
         write(f"/{s['slug']}/index.html", C.page_service_index(s))
