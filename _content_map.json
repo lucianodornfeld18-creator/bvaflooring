@@ -1,0 +1,687 @@
+{
+ "site": "bvaflooring.com",
+ "generated": "2026-06-24",
+ "rule": "Each keyword+intent maps to exactly ONE canonical URL. Transactional -> service or service-city hub; informational -> blog cost guide / glossary; commercial-investigation -> /guides/ comparison. Hubs and blog posts must not target the same keyword+intent.",
+ "entries": [
+  {
+   "keyword": "hardwood installation tampa bay",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/"
+  },
+  {
+   "keyword": "hardwood bradenton",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/bradenton/"
+  },
+  {
+   "keyword": "hardwood sarasota",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/sarasota/"
+  },
+  {
+   "keyword": "hardwood lakewood ranch",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/lakewood-ranch/"
+  },
+  {
+   "keyword": "hardwood palmetto",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/palmetto/"
+  },
+  {
+   "keyword": "hardwood parrish",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/parrish/"
+  },
+  {
+   "keyword": "hardwood venice",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/venice/"
+  },
+  {
+   "keyword": "hardwood tampa",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/tampa/"
+  },
+  {
+   "keyword": "hardwood st. petersburg",
+   "intent": "transactional",
+   "url": "/hardwood-flooring/st-petersburg/"
+  },
+  {
+   "keyword": "vinyl plank installation tampa bay",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/"
+  },
+  {
+   "keyword": "vinyl plank bradenton",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/bradenton/"
+  },
+  {
+   "keyword": "vinyl plank sarasota",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/sarasota/"
+  },
+  {
+   "keyword": "vinyl plank lakewood ranch",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/lakewood-ranch/"
+  },
+  {
+   "keyword": "vinyl plank palmetto",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/palmetto/"
+  },
+  {
+   "keyword": "vinyl plank parrish",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/parrish/"
+  },
+  {
+   "keyword": "vinyl plank venice",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/venice/"
+  },
+  {
+   "keyword": "vinyl plank tampa",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/tampa/"
+  },
+  {
+   "keyword": "vinyl plank st. petersburg",
+   "intent": "transactional",
+   "url": "/vinyl-plank-flooring/st-petersburg/"
+  },
+  {
+   "keyword": "tile installation tampa bay",
+   "intent": "transactional",
+   "url": "/tile-installation/"
+  },
+  {
+   "keyword": "tile bradenton",
+   "intent": "transactional",
+   "url": "/tile-installation/bradenton/"
+  },
+  {
+   "keyword": "tile sarasota",
+   "intent": "transactional",
+   "url": "/tile-installation/sarasota/"
+  },
+  {
+   "keyword": "tile lakewood ranch",
+   "intent": "transactional",
+   "url": "/tile-installation/lakewood-ranch/"
+  },
+  {
+   "keyword": "tile palmetto",
+   "intent": "transactional",
+   "url": "/tile-installation/palmetto/"
+  },
+  {
+   "keyword": "tile parrish",
+   "intent": "transactional",
+   "url": "/tile-installation/parrish/"
+  },
+  {
+   "keyword": "tile venice",
+   "intent": "transactional",
+   "url": "/tile-installation/venice/"
+  },
+  {
+   "keyword": "tile tampa",
+   "intent": "transactional",
+   "url": "/tile-installation/tampa/"
+  },
+  {
+   "keyword": "tile st. petersburg",
+   "intent": "transactional",
+   "url": "/tile-installation/st-petersburg/"
+  },
+  {
+   "keyword": "laminate installation tampa bay",
+   "intent": "transactional",
+   "url": "/laminate-flooring/"
+  },
+  {
+   "keyword": "laminate bradenton",
+   "intent": "transactional",
+   "url": "/laminate-flooring/bradenton/"
+  },
+  {
+   "keyword": "laminate sarasota",
+   "intent": "transactional",
+   "url": "/laminate-flooring/sarasota/"
+  },
+  {
+   "keyword": "laminate lakewood ranch",
+   "intent": "transactional",
+   "url": "/laminate-flooring/lakewood-ranch/"
+  },
+  {
+   "keyword": "laminate palmetto",
+   "intent": "transactional",
+   "url": "/laminate-flooring/palmetto/"
+  },
+  {
+   "keyword": "laminate parrish",
+   "intent": "transactional",
+   "url": "/laminate-flooring/parrish/"
+  },
+  {
+   "keyword": "laminate venice",
+   "intent": "transactional",
+   "url": "/laminate-flooring/venice/"
+  },
+  {
+   "keyword": "laminate tampa",
+   "intent": "transactional",
+   "url": "/laminate-flooring/tampa/"
+  },
+  {
+   "keyword": "laminate st. petersburg",
+   "intent": "transactional",
+   "url": "/laminate-flooring/st-petersburg/"
+  },
+  {
+   "keyword": "stair treads installation tampa bay",
+   "intent": "transactional",
+   "url": "/stair-treads/"
+  },
+  {
+   "keyword": "stair treads bradenton",
+   "intent": "transactional",
+   "url": "/stair-treads/bradenton/"
+  },
+  {
+   "keyword": "stair treads sarasota",
+   "intent": "transactional",
+   "url": "/stair-treads/sarasota/"
+  },
+  {
+   "keyword": "stair treads lakewood ranch",
+   "intent": "transactional",
+   "url": "/stair-treads/lakewood-ranch/"
+  },
+  {
+   "keyword": "stair treads palmetto",
+   "intent": "transactional",
+   "url": "/stair-treads/palmetto/"
+  },
+  {
+   "keyword": "stair treads parrish",
+   "intent": "transactional",
+   "url": "/stair-treads/parrish/"
+  },
+  {
+   "keyword": "stair treads venice",
+   "intent": "transactional",
+   "url": "/stair-treads/venice/"
+  },
+  {
+   "keyword": "stair treads tampa",
+   "intent": "transactional",
+   "url": "/stair-treads/tampa/"
+  },
+  {
+   "keyword": "stair treads st. petersburg",
+   "intent": "transactional",
+   "url": "/stair-treads/st-petersburg/"
+  },
+  {
+   "keyword": "floor repair installation tampa bay",
+   "intent": "transactional",
+   "url": "/floor-repair/"
+  },
+  {
+   "keyword": "floor repair bradenton",
+   "intent": "transactional",
+   "url": "/floor-repair/bradenton/"
+  },
+  {
+   "keyword": "floor repair sarasota",
+   "intent": "transactional",
+   "url": "/floor-repair/sarasota/"
+  },
+  {
+   "keyword": "floor repair lakewood ranch",
+   "intent": "transactional",
+   "url": "/floor-repair/lakewood-ranch/"
+  },
+  {
+   "keyword": "floor repair palmetto",
+   "intent": "transactional",
+   "url": "/floor-repair/palmetto/"
+  },
+  {
+   "keyword": "floor repair parrish",
+   "intent": "transactional",
+   "url": "/floor-repair/parrish/"
+  },
+  {
+   "keyword": "floor repair venice",
+   "intent": "transactional",
+   "url": "/floor-repair/venice/"
+  },
+  {
+   "keyword": "floor repair tampa",
+   "intent": "transactional",
+   "url": "/floor-repair/tampa/"
+  },
+  {
+   "keyword": "floor repair st. petersburg",
+   "intent": "transactional",
+   "url": "/floor-repair/st-petersburg/"
+  },
+  {
+   "keyword": "refinishing installation tampa bay",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/"
+  },
+  {
+   "keyword": "refinishing bradenton",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/bradenton/"
+  },
+  {
+   "keyword": "refinishing sarasota",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/sarasota/"
+  },
+  {
+   "keyword": "refinishing lakewood ranch",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/lakewood-ranch/"
+  },
+  {
+   "keyword": "refinishing palmetto",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/palmetto/"
+  },
+  {
+   "keyword": "refinishing parrish",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/parrish/"
+  },
+  {
+   "keyword": "refinishing venice",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/venice/"
+  },
+  {
+   "keyword": "refinishing tampa",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/tampa/"
+  },
+  {
+   "keyword": "refinishing st. petersburg",
+   "intent": "transactional",
+   "url": "/hardwood-refinishing/st-petersburg/"
+  },
+  {
+   "keyword": "flooring bradenton",
+   "intent": "transactional",
+   "url": "/bradenton/"
+  },
+  {
+   "keyword": "flooring sarasota",
+   "intent": "transactional",
+   "url": "/sarasota/"
+  },
+  {
+   "keyword": "flooring lakewood ranch",
+   "intent": "transactional",
+   "url": "/lakewood-ranch/"
+  },
+  {
+   "keyword": "flooring palmetto",
+   "intent": "transactional",
+   "url": "/palmetto/"
+  },
+  {
+   "keyword": "flooring parrish",
+   "intent": "transactional",
+   "url": "/parrish/"
+  },
+  {
+   "keyword": "flooring venice",
+   "intent": "transactional",
+   "url": "/venice/"
+  },
+  {
+   "keyword": "flooring tampa",
+   "intent": "transactional",
+   "url": "/tampa/"
+  },
+  {
+   "keyword": "flooring st. petersburg",
+   "intent": "transactional",
+   "url": "/st-petersburg/"
+  },
+  {
+   "keyword": "hardwood cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-bradenton/"
+  },
+  {
+   "keyword": "hardwood cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "hardwood cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-palmetto/"
+  },
+  {
+   "keyword": "hardwood cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-parrish/"
+  },
+  {
+   "keyword": "laminate vs. vinyl plank: best floor for fl rentals",
+   "intent": "informational",
+   "url": "/blog/laminate-vs-vinyl-plank-florida-rentals/"
+  },
+  {
+   "keyword": "hardwood cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-venice/"
+  },
+  {
+   "keyword": "tile installation cost in tampa, fl (2026 guide)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-tampa/"
+  },
+  {
+   "keyword": "hardwood cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-tampa/"
+  },
+  {
+   "keyword": "hardwood flooring cost in sarasota, fl (2026 guide)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-sarasota/"
+  },
+  {
+   "keyword": "hardwood cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-flooring-cost-st-petersburg/"
+  },
+  {
+   "keyword": "vinyl plank cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-sarasota/"
+  },
+  {
+   "keyword": "the best flooring for florida homes: a room-by-room guide (2026)",
+   "intent": "informational",
+   "url": "/blog/best-flooring-for-florida-homes/"
+  },
+  {
+   "keyword": "vinyl plank cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "vinyl plank cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-palmetto/"
+  },
+  {
+   "keyword": "vinyl plank cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-parrish/"
+  },
+  {
+   "keyword": "hardwood vs. vinyl plank in florida: which lasts longer in the humidity?",
+   "intent": "informational",
+   "url": "/blog/hardwood-vs-vinyl-plank-florida/"
+  },
+  {
+   "keyword": "vinyl plank cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-venice/"
+  },
+  {
+   "keyword": "vinyl plank cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-tampa/"
+  },
+  {
+   "keyword": "vinyl plank cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-st-petersburg/"
+  },
+  {
+   "keyword": "tile cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-bradenton/"
+  },
+  {
+   "keyword": "how much does vinyl plank flooring cost in bradenton, fl? (2026)",
+   "intent": "informational",
+   "url": "/blog/vinyl-plank-flooring-cost-bradenton/"
+  },
+  {
+   "keyword": "tile cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-sarasota/"
+  },
+  {
+   "keyword": "tile cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "tile cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-palmetto/"
+  },
+  {
+   "keyword": "tile cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-parrish/"
+  },
+  {
+   "keyword": "tile cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-venice/"
+  },
+  {
+   "keyword": "tile cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/tile-installation-cost-st-petersburg/"
+  },
+  {
+   "keyword": "laminate cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-bradenton/"
+  },
+  {
+   "keyword": "laminate cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-sarasota/"
+  },
+  {
+   "keyword": "laminate cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "laminate cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-palmetto/"
+  },
+  {
+   "keyword": "laminate cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-parrish/"
+  },
+  {
+   "keyword": "laminate cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-venice/"
+  },
+  {
+   "keyword": "laminate cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-tampa/"
+  },
+  {
+   "keyword": "laminate cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/laminate-flooring-cost-st-petersburg/"
+  },
+  {
+   "keyword": "stair treads cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-bradenton/"
+  },
+  {
+   "keyword": "stair treads cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-sarasota/"
+  },
+  {
+   "keyword": "stair treads cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "stair treads cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-palmetto/"
+  },
+  {
+   "keyword": "stair treads cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-parrish/"
+  },
+  {
+   "keyword": "stair treads cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-venice/"
+  },
+  {
+   "keyword": "stair treads cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-tampa/"
+  },
+  {
+   "keyword": "stair treads cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/stair-treads-cost-st-petersburg/"
+  },
+  {
+   "keyword": "floor repair cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-bradenton/"
+  },
+  {
+   "keyword": "floor repair cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-sarasota/"
+  },
+  {
+   "keyword": "floor repair cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "floor repair cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-palmetto/"
+  },
+  {
+   "keyword": "floor repair cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-parrish/"
+  },
+  {
+   "keyword": "floor repair cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-venice/"
+  },
+  {
+   "keyword": "floor repair cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-tampa/"
+  },
+  {
+   "keyword": "floor repair cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/floor-repair-cost-st-petersburg/"
+  },
+  {
+   "keyword": "refinishing cost in bradenton, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-bradenton/"
+  },
+  {
+   "keyword": "refinishing cost in sarasota, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-sarasota/"
+  },
+  {
+   "keyword": "refinishing cost in lakewood ranch, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-lakewood-ranch/"
+  },
+  {
+   "keyword": "refinishing cost in palmetto, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-palmetto/"
+  },
+  {
+   "keyword": "refinishing cost in parrish, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-parrish/"
+  },
+  {
+   "keyword": "refinishing cost in venice, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-venice/"
+  },
+  {
+   "keyword": "refinishing cost in tampa, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-tampa/"
+  },
+  {
+   "keyword": "refinishing cost in st. petersburg, fl (2026)",
+   "intent": "informational",
+   "url": "/blog/hardwood-refinishing-cost-st-petersburg/"
+  },
+  {
+   "keyword": "herringbone vs. straight-lay plank",
+   "intent": "commercial-investigation",
+   "url": "/guides/#herringbone-vs-straight-plank"
+  },
+  {
+   "keyword": "porcelain tile vs. lvp in florida kitchens",
+   "intent": "commercial-investigation",
+   "url": "/guides/#porcelain-tile-vs-lvp-kitchens"
+  },
+  {
+   "keyword": "spc vs. wpc vinyl on a florida concrete slab",
+   "intent": "commercial-investigation",
+   "url": "/guides/#spc-vs-wpc-concrete-slab"
+  },
+  {
+   "keyword": "refinish vs. replace hardwood in a humid climate",
+   "intent": "commercial-investigation",
+   "url": "/guides/#refinish-vs-replace-hardwood"
+  },
+  {
+   "keyword": "engineered vs. solid hardwood on the gulf coast",
+   "intent": "commercial-investigation",
+   "url": "/guides/#engineered-vs-solid-hardwood-gulf-coast"
+  },
+  {
+   "keyword": "flooring terms glossary lvp spc wpc",
+   "intent": "informational",
+   "url": "/glossary/"
+  }
+ ]
+}

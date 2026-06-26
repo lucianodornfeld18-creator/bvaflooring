@@ -4,8 +4,53 @@ import re
 from build import (BRAND, LEGAL, TAGLINE, DOMAIN, PHONE_E164, PHONE_DISP, WA, EMAIL,
                    BASE_CITY, STATE, EXPERIENCE, STANDARD, SERVICES, SVC, AREAS, CITIES,
                    head, header, footer, wa_float, wa_banner, final_cta, MENU_JS, jsonld,
-                   sc_org, sc_localbiz, sc_breadcrumb, sc_website, crumbs, faq_block,
-                   SVG_PHONE, SVG_WA, wa_link)
+                   sc_org, sc_localbiz, sc_breadcrumb, sc_website, sc_service, crumbs, faq_block,
+                   SVG_PHONE, SVG_WA, wa_link, SAMEAS, BUILD_DATE)
+
+import re as _re2
+def clip(text, n=155):
+    """Trim a meta description to <= n chars on a word boundary, ending cleanly."""
+    t=" ".join(text.split())
+    if len(t)<=n: return t
+    cut=t[:n].rsplit(" ",1)[0].rstrip(" ,;:—-")
+    return cut+"." if cut and cut[-1] not in ".!?" else cut
+
+# Per-city differentiation (property type, price positioning, local moisture note) — keeps
+# service×city FAQs and blog cost posts unique per city (anti-canibalization / anti-duplication).
+CITY_ANGLE = {
+ "bradenton":     {"prop":"1950s concrete-block ranches near Palma Sola to newer waterfront builds along the Manatee River",
+                   "pos":"a mid-market range, with slab-on-grade homes often needing leveling",
+                   "moist":"river-and-Gulf humidity that punishes untested slabs"},
+ "sarasota":      {"prop":"West-of-Trail estates, historic downtown bungalows, and key condos",
+                   "pos":"toward the upper end, where premium materials and detailed layouts are common",
+                   "moist":"coastal salt air and closed-up seasonal homes"},
+ "lakewood-ranch":{"prop":"newer master-planned and golf-course homes in communities like Lakewood National and Waterside",
+                   "pos":"at a premium, and HOA design rules often dictate product and color",
+                   "moist":"fresh-build slab moisture that hasn't fully cured"},
+ "palmetto":      {"prop":"older riverfront cottages and new builds north of the Manatee",
+                   "pos":"value-focused, with budget LVP and laminate popular",
+                   "moist":"riverfront damp and aging subfloors"},
+ "parrish":       {"prop":"fast-growing master-planned subdivisions like North River Ranch",
+                   "pos":"new-construction value, with builder-grade upgrades common",
+                   "moist":"green-slab moisture in brand-new homes"},
+ "venice":        {"prop":"island bungalows and 55+ communities",
+                   "pos":"mid-to-premium, with retiree-friendly, low-maintenance picks leading",
+                   "moist":"barrier-island salt air and humidity"},
+ "tampa":         {"prop":"South Tampa bungalows, Hyde Park historics, and new downtown condos",
+                   "pos":"at an urban premium, with older pier-and-beam homes needing extra prep",
+                   "moist":"bay humidity and century-old subfloors"},
+ "st-petersburg": {"prop":"Old Northeast historic homes, Kenwood bungalows, and downtown condos",
+                   "pos":"at a renovation premium, especially in protected historic districts",
+                   "moist":"Pinellas coastal humidity over older, uneven slabs"},
+}
+
+def svc_price_bounds(slug):
+    """Independent BVA low/high (USD) parsed from this site's own SVC_DATA ranges — not copied from any other site."""
+    nums=[]
+    for _,price,_ in SVC_DATA[slug]["prices"]:
+        for m in _re2.findall(r"\$\s*([0-9][0-9,]*(?:\.[0-9]+)?)", price):
+            nums.append(float(m.replace(",","")))
+    return (min(nums) if nums else 0, max(nums) if nums else 0)
 
 # ── Logo (compact, transparent bg; whitened in footer via CSS) ──────────────
 LOGO_SVG = """<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
@@ -191,10 +236,16 @@ def included_section(svc):
 # ── Service-city FAQs ───────────────────────────────────────────────────────
 def svc_city_faqs(svc, city):
     short=svc["short"]
+    slug=dict((n,s) for s,n in AREAS).get(city,"")
+    a=CITY_ANGLE.get(slug,{})
+    cityline=(f" {city} homes run from {a['prop']}, so local {short.lower()} quotes tend to sit {a['pos']}."
+              if a else "")
+    moistline=(f" {city.split(',')[0]}'s {a['moist']} is exactly the condition our protocol is built for."
+               if a else "")
     return [
      (f"How much does {short.lower()} cost in {city}, FL?",
       f"Most {city} {short.lower()} projects land within the ranges in the table above, which reflect real "
-      f"Gulf-Coast market rates for 2026. Your exact price depends on square footage, the material you pick, "
+      f"Gulf-Coast market rates for 2026.{cityline} Your exact price depends on square footage, the material you pick, "
       f"how much subfloor prep is needed, and access. We give you a free, written, itemized estimate so you "
       f"can compare apples to apples — no vague phone guesses."),
      (f"How long does a {short.lower()} install take in {city}?",
@@ -202,7 +253,7 @@ def svc_city_faqs(svc, city):
       f"Whole-home jobs run longer. Because Florida humidity demands a 48–72 hour acclimation window for many "
       f"products, we build that into the schedule up front instead of rushing it."),
      (f"Do you handle the humidity issues common in {city} homes?",
-      f"Yes — it is the core of how we work. Every BVA install includes documented subfloor moisture testing, "
+      f"Yes — it is the core of how we work.{moistline} Every BVA install includes documented subfloor moisture testing, "
       f"ambient humidity logging, and a go/no-go sign-off before a single plank goes down. That is what keeps "
       f"{city} floors from cupping, gapping, or peeling a season later."),
      (f"Do you offer a warranty on {short.lower()} in {city}?",
@@ -299,10 +350,9 @@ def projects_gallery(slug=None, limit=None, heading=None, sub=None, bg=False, pr
             f'<div class="projgrid">{cards}</div></div></section>')
 
 def page_home():
-    title=f"Flooring Installation Bradenton FL · Tampa Bay | {BRAND}"
-    desc=("Flooring installation in Bradenton, Sarasota & Tampa Bay, FL — hardwood, waterproof "
-          "vinyl plank, tile, laminate & stair treads. Licensed, insured, built for Florida "
-          f"humidity. Free 24-hr estimate · {PHONE_DISP}.")
+    title=f"Flooring Installation Bradenton FL | {BRAND}"
+    desc=clip("Flooring installation in Bradenton, Sarasota & Tampa Bay, FL — hardwood, waterproof "
+          "vinyl plank, tile, laminate, stairs & refinishing. Licensed, insured. Free 24-hour estimate.")
     svc_cards="".join(
         f'<a class="svc-card" href="/{s["slug"]}/"><div class="svc-ic">{s["icon"]}</div>'
         f'<h3>{s["name"]}</h3><p>{s["blurb"]}</p><span class="more">Explore {s["short"]} →</span></a>'
@@ -372,10 +422,10 @@ def page_home():
 
 def page_service_index(svc):
     s=SVC_DATA[svc["slug"]]
-    title=f"{svc['name']} Bradenton & Tampa Bay FL | {BRAND}"
-    desc=(f"{svc['short']} installation in Bradenton, Sarasota & Tampa Bay, FL. "
-          f"Transparent pricing, 52-point standard, licensed & insured. Free 24-hr estimate — {PHONE_DISP}.")[:158]
-    bc=[("Home","/"),("Services","/hardwood-flooring/"),(svc['name'],None)]
+    title=f"{svc['short']} in Bradenton & Tampa Bay | {BRAND}"
+    desc=clip(f"{svc['short']} installation in Bradenton, Sarasota & Tampa Bay, FL. "
+          f"Transparent pricing, our 52-Point Floor-Ready Standard, licensed & insured. Free 24-hour estimate.")
+    bc=[("Home","/"),(svc['name'],None)]
     faqs=svc_city_faqs(svc, "Tampa Bay")
     faq_html,faq_schema=faq_block(faqs)
     city_links="".join(
@@ -383,9 +433,11 @@ def page_service_index(svc):
          if slug=="bradenton" else
          f'<a class="rel" href="/{slug}/"><b>{nm}</b><span>{svc["short"]} in {nm}, FL</span></a>')
         for slug,nm in AREAS)
+    _lo,_hi=svc_price_bounds(svc['slug'])
     schema=jsonld(sc_localbiz(f"/{svc['slug']}/", f"{svc['name']} installation across Bradenton and Tampa Bay, FL.", suffix=svc['short']),
+                  sc_service(svc, f"/{svc['slug']}/", [nm for _,nm in AREAS], _lo, _hi),
                   sc_breadcrumb(bc), faq_schema)
-    return (head(title,desc,f"/{svc['slug']}/") + header() + crumbs(bc) +
+    return (head(title,desc,f"/{svc['slug']}/",og=f"og-{svc['slug']}.jpg") + header() + crumbs(bc) +
      f"""<section class="phero"><div class="wrap"><span class="eyebrow">{svc['name']}</span>
 <h1>{svc['name']} in <b>Bradenton &amp; Tampa Bay</b></h1>
 <p>{s['intro']}</p>
@@ -406,9 +458,9 @@ def page_service_index(svc):
 
 def page_service_city(svc, city_slug):
     c=CITIES[city_slug]; city=c["name"]; s=SVC_DATA[svc["slug"]]
-    title=f"{svc['short']} {city} FL | {BRAND} · Free Estimate"
-    desc=(f"{svc['name']} in {city}, FL — {', '.join(c['hoods'][:3])} & all of {c['county']}. "
-          f"Transparent pricing, moisture-tested installs, licensed & insured. Free estimate {PHONE_DISP}.")[:158]
+    title=f"{svc['short']} in {city}, FL | {BRAND}"
+    desc=clip(f"{svc['name']} in {city}, FL — {', '.join(c['hoods'][:2])} & all of {c['county']}. "
+          f"Transparent pricing, moisture-tested installs, licensed & insured. Free 24-hour estimate.")
     bc=[("Home","/"),(svc['name'],f"/{svc['slug']}/"),(city,None)]
     faqs=svc_city_faqs(svc, city)
     faq_html,faq_schema=faq_block(faqs)
@@ -416,10 +468,12 @@ def page_service_city(svc, city_slug):
     zips="".join(f'<span>{z}</span>' for z in c["zips"])
     related_cards="".join(f'<a class="rel" href="/{o["slug"]}/bradenton/"><b>{o["short"]} in {city}</b><span>See pricing &amp; scope →</span></a>'
                           for o in SERVICES if o["slug"]!=svc["slug"])
+    _lo,_hi=svc_price_bounds(svc['slug'])
     schema=jsonld(sc_localbiz(f"/{svc['slug']}/{city_slug}/",
                     f"{svc['name']} in {city}, FL by {BRAND}. {s['intro'][:120]}", city=city, suffix=f"{svc['short']} {city}"),
+                  sc_service(svc, f"/{svc['slug']}/{city_slug}/", [city], _lo, _hi),
                   sc_breadcrumb(bc), faq_schema)
-    return (head(title,desc,f"/{svc['slug']}/{city_slug}/") + header() + crumbs(bc) +
+    return (head(title,desc,f"/{svc['slug']}/{city_slug}/",og=f"og-{svc['slug']}.jpg") + header() + crumbs(bc) +
      f"""<section class="phero"><div class="wrap"><span class="eyebrow">{svc['name']} · {city}, FL</span>
 <h1>{svc['short']} in <b>{city}, FL</b> — Florida-Tough, Done Once</h1>
 <p>Moisture-tested, acclimated, and finished by one local crew across {c['county']}. Free written estimate in 24 hours.</p>
@@ -446,7 +500,7 @@ def page_service_city(svc, city_slug):
 
 def page_city_hub(city_slug):
     c=CITIES[city_slug]; city=c["name"]
-    title=f"Flooring {city} FL | Hardwood, Vinyl, Tile · {BRAND}"
+    title=f"Flooring in {city}, FL | {BRAND}"
     desc=(f"Flooring installation in {city}, FL — hardwood, luxury vinyl plank, tile, laminate & stairs across "
           f"{c['county']}. Licensed, insured, free 24-hr estimate. {PHONE_DISP}.")[:158]
     bc=[("Home","/"),("Service Areas","/bradenton/"),(city,None)]
@@ -523,7 +577,7 @@ def page_about():
 {footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
 
 def page_contact():
-    title=f"Contact {BRAND} | Free Flooring Estimate · Bradenton FL"
+    title=f"Contact {BRAND} | Free Flooring Estimate"
     desc=(f"Get a free flooring estimate from BVA Flooring in 24 hours. Call, text, or WhatsApp {PHONE_DISP}. "
           f"Serving Bradenton, Sarasota & Tampa Bay, FL.")[:158]
     bc=[("Home","/"),("Contact",None)]
@@ -678,6 +732,45 @@ for _f in sorted(_glob.glob(_os.path.join(_AUTO,"*.json"))):
             BLOG_POSTS.append(_p); POSTS_BY_SLUG[_p["slug"]]=_p
     except Exception as _e:
         print("  ! skipped auto post",_f,_e)
+# ── Cost matrix: one cost guide per service × city (BVA-unique copy) ─────────
+def _build_cost_matrix():
+    import datetime as _dt
+    base=_dt.date.fromisoformat(BUILD_DATE); out=[]; idx=0
+    for svc in SERVICES:
+        slug=svc["slug"]; sd=SVC_DATA[slug]; short=svc["short"]
+        label0,price0,_n0=sd["prices"][0]
+        label0=_re2.sub("&amp;","&",label0); price0=_re2.sub("&amp;","&",price0)
+        prows="".join(f'<tr><td>{_re2.sub("&amp;","&",l)}</td><td>{p}</td><td>{_re2.sub("&amp;","&",n)}</td></tr>' for l,p,n in sd["prices"])
+        for cslug,city in AREAS:
+            post_slug=f"{slug}-cost-{cslug}"
+            if post_slug in POSTS_BY_SLUG: continue
+            c=CITIES[cslug]; a=CITY_ANGLE.get(cslug,{})
+            d=(base-_dt.timedelta(days=3*idx)).isoformat(); idx+=1
+            body=[
+             (f"What {short.lower()} costs in {city}, FL",
+              f"<p>In {city}, {short.lower()} with BVA typically starts around <strong>{price0}</strong> for {label0.lower()} — full 2026 ranges are in the table below. {city} homes run from {a.get('prop','a mix of older and newer construction')}, which is why local quotes tend to sit {a.get('pos','within these ranges')}. These are BVA's own Gulf-Coast price ranges, not a national average; your exact number comes from a free measurement.</p>"),
+             (f"What moves a {city} {short.lower()} price",
+              f"<p>{sd['intro']}</p><p>In {city} specifically, the biggest cost drivers are the product grade you choose, how much subfloor prep your home needs, tear-out and haul-away, and access. {c['intro']}</p>"),
+             (f"BVA {short.lower()} price ranges (2026)",
+              f'<div class="ptab"><table><thead><tr><th>Option</th><th>Typical Range</th><th>Notes</th></tr></thead><tbody>{prows}</tbody></table></div><p class="pnote">Ranges are BVA\'s own; final price depends on material, square footage, prep &amp; access.</p>'),
+             (f"Why {city} homes need the right prep first",
+              f"<p>{city.split(',')[0]}'s {a.get('moist','Gulf-Coast humidity')} is the hidden variable behind every lasting floor. Our {STANDARD} starts each job with documented moisture testing and a 48–72 hour acclimation window — the boring step that keeps {city} floors from cupping, gapping, or peeling near {c['landmarks']}.</p>"),
+             ("How to get an honest quote",
+              f"<p>Get at least two written, itemized estimates and compare the line items — subfloor prep, moisture testing, tear-out, and the written warranty — not just the bottom line. BVA sends a free, itemized {short.lower()} estimate within 24 hours so you can compare honestly.</p>"),
+            ]
+            out.append({"slug":post_slug,"emoji":svc.get("icon","📝"),"cat":"Cost Guide","read":"7 min",
+                "date":d,"mod":BUILD_DATE,
+                "title":f"{short} Cost in {city}, FL (2026)",
+                "h1":f"{short} Cost in {city}, FL — 2026 Price Guide",
+                "dek":f"What {short.lower()} really costs in {city}, FL in 2026 — BVA's own installed price ranges, what drives the number, and how to get an honest quote.",
+                "links":[(f"{svc['name']} service",f"/{slug}/"),(f"{short} in {city}",f"/{slug}/{cslug}/"),("Get a free estimate","/contact/")],
+                "body":body,"faqs":svc_city_faqs(svc, city)[:3]})
+    return out
+
+for _mp in _build_cost_matrix():
+    if _mp["slug"] not in POSTS_BY_SLUG:
+        BLOG_POSTS.append(_mp); POSTS_BY_SLUG[_mp["slug"]]=_mp
+
 BLOG_POSTS.sort(key=lambda x:x.get("date",""), reverse=True)  # newest first
 
 def _fmt_date(iso):
@@ -707,7 +800,8 @@ def page_blog_index():
 {footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
 
 def page_blog_post(p):
-    title=(f"{p['title']} | {BRAND}")[:65] if len(f"{p['title']} | {BRAND}")<=65 else p['title'][:62]
+    _ttl=f"{p['title']} | {BRAND}"
+    title=_ttl if len(_ttl)<=60 else (" ".join(p['title'][:60].split()[:-1]) or p['title'][:60])
     desc=p["dek"][:158]
     bc=[("Home","/"),("Blog","/blog/"),(p["cat"],None)]
     body="".join(f'<h2>{h}</h2>{html}' for h,html in p["body"])
@@ -849,6 +943,7 @@ def llms_txt():
     return (f"# {BRAND} ({LEGAL})\n"
             f"> Licensed & insured flooring installation contractor on Florida's Gulf Coast (Tampa Bay).\n\n"
             f"Website: https://{DOMAIN}/\n"
+            f"Full reference: https://{DOMAIN}/llms-full.txt\n"
             f"Phone / text / WhatsApp: {PHONE_DISP}\n"
             f"Email: {EMAIL}\n"
             f"Service area: {city_lines} — Manatee, Sarasota, Hillsborough & Pinellas counties, FL.\n"
@@ -864,6 +959,157 @@ def llms_txt():
             f"## Recent guides\n{blog_lines}\n\n"
             f"## Contact\nFree, no-obligation estimate: call/text/WhatsApp {PHONE_DISP} or https://{DOMAIN}/contact/\n")
 
+# ── llms-full.txt (extended AI reference) ───────────────────────────────────
+def llms_full_txt():
+    out=[f"# {BRAND} ({LEGAL}) — Full Reference",
+         f"> Licensed & insured flooring installation & refinishing contractor, Florida Gulf Coast (Tampa Bay).",
+         "",
+         f"Website: https://{DOMAIN}/ | Phone/text/WhatsApp: {PHONE_DISP} | Email: {EMAIL}",
+         f"Address (NAP): {BRAND} ({LEGAL}), {BASE_CITY}, {STATE} {('34208')} — serving 8 cities across Manatee, Sarasota, Hillsborough & Pinellas counties.",
+         f"Hours: Mon-Sat 7 AM - 7 PM. Free written estimate within 24 hours. Experience: {EXPERIENCE}.",
+         f"Differentiators: the {STANDARD} (documented 52-point checklist), in-house hardwood refinishing, and Tampa/Pinellas (St. Petersburg) coverage many local installers skip.",
+         "","## Services (BVA-derived 2026 price ranges)"]
+    for s in SERVICES:
+        d=SVC_DATA[s["slug"]]
+        out.append(f"\n### {s['name']} — https://{DOMAIN}/{s['slug']}/")
+        out.append(_re2.sub(r'\s+',' ',d['intro']))
+        out.append("Pricing: "+"; ".join(f"{_re2.sub('&amp;','&',l)} {p}" for l,p,_ in d['prices']))
+        out.append("Includes: "+", ".join(_re2.sub('&amp;','&',i) for i in d['included']))
+    out.append("\n## Cities served (local context)")
+    for slug,nm in AREAS:
+        c=CITIES[slug]; a=CITY_ANGLE.get(slug,{})
+        out.append(f"- {nm}, FL ({c['county']}) — https://{DOMAIN}/{slug}/ : {a.get('prop','')}. Pricing tends {a.get('pos','')}.")
+    out.append("\n## Common questions")
+    for cat,qas in FAQ_HUB:
+        for q,ans in qas:
+            out.append(f"Q: {q}\nA: {_re2.sub(r'<[^>]+>','',ans)}")
+    out.append("\n## Contact\nFree, no-obligation estimate: call/text/WhatsApp "+PHONE_DISP+f" or https://{DOMAIN}/contact/")
+    return "\n".join(out)+"\n"
+
+# ── _content_map.json (anti-cannibalization ledger: 1 keyword+intent -> 1 URL) ─
+def content_map_json():
+    import json as _j
+    entries=[]
+    for s in SERVICES:
+        entries.append({"keyword":f"{s['short'].lower()} installation tampa bay","intent":"transactional","url":f"/{s['slug']}/"})
+        for slug,nm in AREAS:
+            entries.append({"keyword":f"{s['short'].lower()} {nm.lower()}","intent":"transactional","url":f"/{s['slug']}/{slug}/"})
+    for slug,nm in AREAS:
+        entries.append({"keyword":f"flooring {nm.lower()}","intent":"transactional","url":f"/{slug}/"})
+    for p in BLOG_POSTS:
+        entries.append({"keyword":p["title"].lower(),"intent":"informational","url":f"/blog/{p['slug']}/"})
+    for g in GUIDES:
+        entries.append({"keyword":g["title"].lower(),"intent":"commercial-investigation","url":f"/guides/#{g['slug']}"})
+    entries.append({"keyword":"flooring terms glossary lvp spc wpc","intent":"informational","url":"/glossary/"})
+    doc={"site":DOMAIN,"generated":BUILD_DATE,
+         "rule":"Each keyword+intent maps to exactly ONE canonical URL. Transactional -> service or service-city hub; "
+                "informational -> blog cost guide / glossary; commercial-investigation -> /guides/ comparison. "
+                "Hubs and blog posts must not target the same keyword+intent.",
+         "entries":entries}
+    return _j.dumps(doc,ensure_ascii=False,indent=1)+"\n"
+
+# ── Glossary (captures "what is LVP/SPC/vapor barrier" searches) ─────────────
+GLOSSARY=[
+ ("Luxury Vinyl Plank (LVP)","A multi-layer, 100% waterproof plank that mimics wood. Florida's most popular floor for its durability and moisture resistance."),
+ ("SPC (Stone Plastic Composite)","A rigid-core vinyl with a dense limestone-based core. Extremely stable and dent-resistant — ideal over Florida slabs."),
+ ("WPC (Wood Plastic Composite)","A rigid-core vinyl with a foamed core — softer and warmer underfoot than SPC, but slightly less dent-resistant."),
+ ("Rigid Core","The dense center layer (SPC or WPC) that lets a vinyl plank stay flat and stable over imperfect subfloors."),
+ ("Wear Layer","The clear top layer protecting a vinyl plank from scratches, measured in mils. 12–20 mil is best for pets, rentals, and busy homes."),
+ ("Mil","A thickness unit (one-thousandth of an inch) used to rate a vinyl plank's wear layer — higher mil means more durability."),
+ ("AC Rating","An abrasion-resistance scale for laminate (AC1–AC5). AC4–AC5 are the durable, residential-to-commercial grades we install."),
+ ("Engineered Hardwood","Real-wood veneer over a stable plywood core. Handles Florida humidity far better than solid wood — our recommended hardwood here."),
+ ("Solid Hardwood","A single piece of wood throughout. Beautiful and refinishable many times, but more reactive to humidity than engineered."),
+ ("Acclimation","Letting flooring sit in your home (often 48–72 hours) to adjust to its humidity before install — critical in Florida."),
+ ("Vapor / Moisture Barrier","A membrane or coating that stops slab moisture from reaching the floor above. Essential over Gulf-Coast concrete."),
+ ("Subfloor","The structural surface (slab or plywood) under your finished floor. Its flatness and dryness make or break an install."),
+ ("Underlayment","A thin cushioning/moisture layer between subfloor and floor that adds comfort, quiet, and sometimes vapor protection."),
+ ("Floating Floor","A floor that clicks together and 'floats' over the subfloor without glue or nails — common for LVP and laminate."),
+ ("Glue-Down","Installing planks with full adhesive to the subfloor — more stable underfoot, often used for large LVP areas and stairs."),
+ ("Lippage","A height difference between adjacent tiles or planks. Excess lippage signals a poor set or an unflat subfloor."),
+ ("Thinset","The cement-based mortar that bonds tile to the subfloor. Full coverage and back-buttering prevent hollow, cracking tile."),
+ ("Large-Format Tile","Tile with any side 15 inches or longer. Looks high-end but demands a dead-flat base and leveling clips to avoid lippage."),
+ ("Refinishing","Sanding hardwood back to raw wood, then restaining and resealing — restoring a tired floor for a fraction of replacement cost."),
+ ("Screen and Recoat","A light buff-and-coat that refreshes a hardwood floor's finish without a full sand-back. Faster and cheaper than refinishing."),
+ ("Dustless Sanding","Refinishing with vacuum-attached sanders that capture most dust at the source — cleaner air and surfaces during the job."),
+ ("Slab-on-Grade","A home built directly on a concrete slab (common in Florida). Demands moisture testing before any floor goes down."),
+ ("Tongue-and-Groove","An interlocking plank edge profile that locks boards together for tight, even seams."),
+ ("Transition Strip","A trim piece that bridges two floors (or a doorway) cleanly and hides the gap where materials meet."),
+ ("Herringbone","A classic zig-zag plank pattern. High-impact but labor-intensive — priced above standard straight-lay installation."),
+]
+def page_glossary():
+    title=f"Flooring Glossary · LVP, SPC & More | {BRAND}"
+    desc=clip("Plain-English flooring terms — LVP, SPC, WPC, wear layer, vapor barrier, acclimation and more, explained by BVA Flooring in Bradenton & Tampa Bay.")
+    bc=[("Home","/"),("Glossary",None)]
+    items="".join(f'<details class="faq"><summary>{t}</summary><div class="faq-c">{d}</div></details>' for t,d in GLOSSARY)
+    termset={"@context":"https://schema.org","@type":"DefinedTermSet","name":f"{BRAND} Flooring Glossary",
+             "url":f"https://{DOMAIN}/glossary/","hasDefinedTerm":[
+               {"@type":"DefinedTerm","name":t,"description":d} for t,d in GLOSSARY]}
+    schema=jsonld(sc_localbiz("/glossary/","Flooring terminology glossary for Gulf-Coast homeowners."),
+                  sc_breadcrumb(bc), termset)
+    return (head(title,desc,"/glossary/") + header() + crumbs(bc) +
+     f"""<section class="phero"><div class="wrap"><span class="eyebrow">Glossary</span>
+<h1>Flooring Terms, <b>in Plain English</b></h1><p>From LVP to vapor barrier — the words that show up on every flooring quote, explained without the jargon.</p></div></section>
+<section class="faqs"><div class="wrap"><div class="faq-l" style="max-width:860px;margin:0 auto">{items}</div></div></section>
+{wa_banner()}
+{final_cta()}
+{footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
+
+# ── Guides hub (mid-funnel comparisons; topics chosen to NOT overlap Triangle) ─
+GUIDES=[
+ {"slug":"herringbone-vs-straight-plank","title":"Herringbone vs. Straight-Lay Plank",
+  "dek":"The zig-zag look costs more to install — here's when it's worth it in a Florida home, and when straight-lay wins.",
+  "body":[("The look and the labor","<p>Herringbone sets each plank at a 45° or 90° angle, creating a tailored, high-end zig-zag. It uses more material (5–15% waste) and far more labor than straight-lay, so installed cost typically runs 25–40% higher. Straight-lay runs boards in one direction — faster, cheaper, and timeless.</p>"),
+   ("Which suits your room","<p>Herringbone shines in entries, formal living areas, and compact spaces where the pattern adds drama. In long, open Florida great-rooms, straight-lay (run toward the main light source or the long wall) makes the space feel larger and calmer. Both work in LVP, engineered hardwood, and tile.</p>"),
+   ("Our take for the Gulf Coast","<p>For most rentals and family homes, straight-lay LVP is the value pick. For a statement entry or a higher-end Sarasota or Lakewood Ranch home, herringbone in a quality plank earns its premium — just budget for the extra labor and a dead-flat subfloor, which the pattern demands.</p>")],
+  "faq":("Is herringbone more expensive to install?","Yes — expect roughly 25–40% more than straight-lay due to extra cuts, waste, and labor, plus a stricter flatness requirement on the subfloor.")},
+ {"slug":"porcelain-tile-vs-lvp-kitchens","title":"Porcelain Tile vs. LVP in Florida Kitchens",
+  "dek":"Both are waterproof — but they behave very differently underfoot, on the budget, and over a Florida slab.",
+  "body":[("Waterproof, but not equal","<p>Porcelain tile and luxury vinyl plank are both waterproof, so either survives kitchen spills. The difference is feel and failure mode: tile is harder, cooler, and nearly indestructible; LVP is warmer, quieter, softer on dropped dishes, and faster to install.</p>"),
+   ("Cost and comfort","<p>Installed LVP usually runs $5–$9/sq ft versus $9–$15 for porcelain. LVP is more forgiving to stand on during long cooking sessions, while tile is the more permanent, higher-resale surface — and the only one we'd put wall-to-wall in a true wet zone.</p>"),
+   ("Our Florida kitchen verdict","<p>For busy family kitchens and rentals, LVP is the smart, comfortable, budget-friendly call. For a forever-home kitchen or an open tile-throughout floorplan, porcelain wins on durability and value. Either way, the slab gets moisture-tested first.</p>")],
+  "faq":("Is LVP or tile better for a Florida kitchen?","Both are waterproof. LVP is warmer, quieter, cheaper, and softer underfoot; porcelain tile is more durable and adds more resale value. The right pick depends on budget and how permanent you want it.")},
+ {"slug":"spc-vs-wpc-concrete-slab","title":"SPC vs. WPC Vinyl on a Florida Concrete Slab",
+  "dek":"Both are rigid-core vinyl — but on a slab-on-grade Florida home, one is the safer default.",
+  "body":[("The core difference","<p>SPC (stone plastic composite) has a dense, mineral-based core; WPC (wood plastic composite) has a foamed, slightly softer core. SPC is thinner, harder, more dent-resistant, and more dimensionally stable in heat; WPC is warmer and quieter underfoot but a touch softer.</p>"),
+   ("Why the slab matters","<p>Florida slab-on-grade homes can transmit heat and moisture. SPC's dense core resists expansion in warm rooms and dents from furniture and pet claws, which is why we default to SPC over slabs — especially in sunrooms and rooms with big west-facing glass.</p>"),
+   ("When WPC makes sense","<p>Choose WPC for comfort-first bedrooms and living areas where underfoot warmth and quiet matter more than maximum dent resistance. In either case, a flat slab and proper moisture strategy matter more than the core type.</p>")],
+  "faq":("Is SPC or WPC better over a concrete slab?","SPC is usually the safer default on Florida slab-on-grade homes — it's harder, more dent-resistant, and more stable in heat. WPC is warmer and quieter but slightly softer.")},
+ {"slug":"refinish-vs-replace-hardwood","title":"Refinish vs. Replace Hardwood in a Humid Climate",
+  "dek":"When sanding and resealing your existing floor beats tearing it out — and when it doesn't.",
+  "body":[("What refinishing can fix","<p>If your hardwood is solid or thick-veneer engineered and structurally sound, refinishing — sanding to raw wood, repairing boards, restaining, and resealing — makes it new again for roughly $3.50–$6/sq ft, well under replacement cost. It also lets you change color and erase years of scratches.</p>"),
+   ("When replacement wins","<p>Replace when the wear layer is too thin to sand, when there's widespread water damage, cupping, or rot, or when you want to switch to a waterproof product in a wet zone. Thin engineered floors can often only be screened-and-recoated, not fully sanded.</p>"),
+   ("The humidity factor","<p>In Florida, the finish choice matters as much as the wood. We favor finishes that tolerate humidity swings and always check board moisture before refinishing, so the floor doesn't cup after we reseal it.</p>")],
+  "faq":("Is it cheaper to refinish or replace hardwood floors?","Refinishing (about $3.50–$6/sq ft) is almost always cheaper than replacement when the wood is sound and thick enough to sand. Replacement makes sense for thin veneers, water damage, or a switch to waterproof flooring.")},
+ {"slug":"engineered-vs-solid-hardwood-gulf-coast","title":"Engineered vs. Solid Hardwood on the Gulf Coast",
+  "dek":"Real wood both ways — but Florida humidity and slab construction tilt the answer.",
+  "body":[("How they react to humidity","<p>Solid hardwood is one piece of wood that expands and contracts with humidity — risky over Florida slabs and in homes that aren't always climate-controlled. Engineered hardwood's cross-layered plywood core stays far more stable, which is why we recommend it for most Gulf-Coast installs.</p>"),
+   ("Install and lifespan","<p>Engineered can be floated or glued over a slab; solid generally needs a plywood subfloor and nail-down. Solid can be sanded more times over its life, but quality engineered with a thick veneer can still be refinished once or twice — usually plenty.</p>"),
+   ("Our recommendation","<p>For owner-occupied homes that want real wood, engineered hardwood is the Gulf-Coast default. Reserve solid hardwood for raised-subfloor homes in stable, well-conditioned interiors — and always acclimate and moisture-test first.</p>")],
+  "faq":("Should I use engineered or solid hardwood in Florida?","Engineered hardwood is the better default in Florida — its stable core resists the humidity swings that make solid wood cup over slabs. Solid wood is best on raised plywood subfloors in consistently climate-controlled homes.")},
+]
+def page_guides():
+    title=f"Flooring Comparison Guides · {BRAND}"
+    desc=clip("Honest flooring comparisons for Florida homes — herringbone vs straight-lay, tile vs LVP, SPC vs WPC, refinish vs replace, engineered vs solid hardwood.")
+    bc=[("Home","/"),("Guides",None)]
+    secs=""; faqs=[]
+    for g in GUIDES:
+        body="".join(f"<h3>{h}</h3>{html}" for h,html in g["body"])
+        secs+=(f'<section class="intro" id="{g["slug"]}"><div class="wrap"><div class="prose" style="max-width:820px;margin:0 auto">'
+               f'<h2>{g["title"]}</h2><p style="color:var(--muted);font-style:italic">{g["dek"]}</p>{body}'
+               f'<p><a href="/contact/#quote">Get a free BVA estimate for your project →</a></p></div></div></section>')
+        faqs.append(g["faq"])
+    faq_html,faq_schema=faq_block(faqs)
+    schema=jsonld(sc_localbiz("/guides/","Mid-funnel flooring comparison guides for Gulf-Coast homeowners."),
+                  sc_breadcrumb(bc), faq_schema)
+    return (head(title,desc,"/guides/") + header() + crumbs(bc) +
+     f"""<section class="phero"><div class="wrap"><span class="eyebrow">Comparison Guides</span>
+<h1>Flooring, <b>Compared Honestly</b></h1><p>No-spin breakdowns of the choices Florida homeowners actually agonize over — material vs material, refinish vs replace, pattern vs budget.</p></div></section>
+{secs}
+<section class="faqs"><div class="wrap"><div class="shead"><span class="eyebrow">Quick Answers</span><h2>Guide FAQs</h2></div>{faq_html}</div></section>
+{wa_banner()}
+{final_cta()}
+{footer()}{wa_float()}{MENU_JS}{schema}</body></html>""")
+
 # ── Support files ───────────────────────────────────────────────────────────
 def robots_txt():
     ai=["GPTBot","ChatGPT-User","OAI-SearchBot","ClaudeBot","Claude-Web","anthropic-ai",
@@ -873,6 +1119,7 @@ def robots_txt():
     return ("User-agent: *\nAllow: /\n\n"
             "# AI & answer-engine crawlers welcome\n"+bots+"\n"
             f"Host: https://{DOMAIN}\n"
+            f"# LLM index: https://{DOMAIN}/llms.txt  (full reference: https://{DOMAIN}/llms-full.txt)\n"
             f"Sitemap: https://{DOMAIN}/sitemap.xml\n")
 
 def headers_file():
@@ -891,16 +1138,18 @@ def redirects_file():
             "/repair  /floor-repair/  301\n")
 
 def sitemap_xml():
-    urls=[("/","1.0","weekly")]
-    for s in SERVICES: urls.append((f"/{s['slug']}/","0.9","monthly"))
+    bd=BUILD_DATE
+    urls=[("/","1.0","weekly",bd)]
+    for s in SERVICES: urls.append((f"/{s['slug']}/","0.9","monthly",bd))
     for slug,_ in AREAS:
-        urls.append((f"/{slug}/","0.8","monthly"))
-        for s in SERVICES: urls.append((f"/{s['slug']}/{slug}/","0.7","monthly"))
-    urls.append(("/blog/","0.6","weekly"))
-    for p in BLOG_POSTS: urls.append((f"/blog/{p['slug']}/","0.6","monthly"))
-    urls += [("/about/","0.5","monthly"),("/contact/","0.7","monthly"),
-             ("/faq/","0.6","monthly"),("/warranty/","0.5","monthly")]
-    body="".join(f"  <url><loc>https://{DOMAIN}{p}</loc><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n"
-                 for p,pr,cf in urls)
+        urls.append((f"/{slug}/","0.8","monthly",bd))
+        for s in SERVICES: urls.append((f"/{s['slug']}/{slug}/","0.7","monthly",bd))
+    urls.append(("/blog/","0.6","weekly",bd))
+    for p in BLOG_POSTS: urls.append((f"/blog/{p['slug']}/","0.6","monthly",p.get("mod",p.get("date",bd))))
+    urls += [("/about/","0.5","monthly",bd),("/contact/","0.7","monthly",bd),
+             ("/faq/","0.6","monthly",bd),("/warranty/","0.5","monthly",bd),
+             ("/guides/","0.7","monthly",bd),("/glossary/","0.5","monthly",bd)]
+    body="".join(f"  <url><loc>https://{DOMAIN}{p}</loc><lastmod>{lm}</lastmod><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n"
+                 for p,pr,cf,lm in urls)
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'</urlset>\n')

@@ -38,4 +38,5 @@ User-agent: Bytespider
 Allow: /
 
 Host: https://bvaflooring.com
+# LLM index: https://bvaflooring.com/llms.txt  (full reference: https://bvaflooring.com/llms-full.txt)
 Sitemap: https://bvaflooring.com/sitemap.xml

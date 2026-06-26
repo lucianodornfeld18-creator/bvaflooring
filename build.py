@@ -27,6 +27,9 @@ EXPERIENCE = "6+ years"
 STANDARD   = "BVA 52-Point Floor-Ready Standard"   # proprietary, named & numbered
 WA_MSG     = "Hi%20BVA%20Flooring%2C%20I%27d%20like%20a%20free%20flooring%20estimate."
 WEB3FORMS_KEY = "ec8d14c8-69fd-4433-b7ed-23a54218333d"   # web3forms.com -> emails leads to bvaservicecorporation@gmail.com
+# Public profiles for Organization schema sameAs (add real URLs as they go live: GBP, Facebook, Instagram).
+SAMEAS = []
+BUILD_DATE = "2026-06-24"   # stamped into sitemap <lastmod>; bump on each manual build
 
 # ── Services ────────────────────────────────────────────────────────────────
 SERVICES = [
@@ -429,6 +432,7 @@ def header():
 <li><a href="/bradenton/" data-t>Service Areas</a><div class="drop">{area_links}</div></li>
 <li><a href="/blog/">Blog</a></li>
 <li><a href="/faq/">FAQ</a></li>
+<li><a href="/guides/">Guides</a></li>
 <li><a href="/about/">About</a></li>
 <li><a href="/contact/">Contact</a></li></ul>
 <div class="nav-cta">
@@ -456,7 +460,7 @@ def footer():
 </div></div>
 <div class="fbot">
 <div>© 2026 {LEGAL} ({BRAND}). All rights reserved. · Licensed &amp; insured · Locally owned.</div>
-<div><a href="/about/">About</a> · <a href="/faq/">FAQ</a> · <a href="/warranty/">Warranty</a> · <a href="/contact/">Contact</a></div>
+<div><a href="/about/">About</a> · <a href="/faq/">FAQ</a> · <a href="/guides/">Guides</a> · <a href="/glossary/">Glossary</a> · <a href="/warranty/">Warranty</a> · <a href="/contact/">Contact</a></div>
 </div></div></footer>"""
 
 def wa_float():
@@ -492,7 +496,16 @@ def sc_org():
         "name":LEGAL,"alternateName":BRAND,"url":f"https://{DOMAIN}/","logo":{"@type":"ImageObject","url":f"https://{DOMAIN}/images/logo.svg"},
         "telephone":PHONE_E164,"email":EMAIL,"areaServed":[{"@type":"City","name":nm} for _,nm in AREAS],
         "address":{"@type":"PostalAddress","addressLocality":BASE_CITY,"addressRegion":STATE,"postalCode":ZIP,"addressCountry":"US"},
-        "foundingDate":FOUNDED,"slogan":TAGLINE}
+        "foundingDate":FOUNDED,"slogan":TAGLINE,
+        **({"sameAs":SAMEAS} if SAMEAS else {})}
+
+def sc_service(svc, path, cities, low, high):
+    return {"@context":"https://schema.org","@type":"Service",
+        "@id":f"https://{DOMAIN}{path}#service","name":f"{svc['name']} Installation",
+        "serviceType":svc['name'],"url":f"https://{DOMAIN}{path}",
+        "provider":{"@id":f"https://{DOMAIN}/#organization"},
+        "areaServed":[{"@type":"City","name":c} for c in cities],
+        "offers":{"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":low,"highPrice":high}}
 
 def sc_localbiz(path,desc,city=None,suffix=""):
     o={"@context":"https://schema.org","@type":["LocalBusiness","HomeAndConstructionBusiness"],
@@ -554,12 +567,16 @@ def main():
     write_raw("_redirects", C.redirects_file())
     write_raw("sitemap.xml", C.sitemap_xml())
     write_raw("llms.txt", C.llms_txt())
+    write_raw("llms-full.txt", C.llms_full_txt())
+    write_raw("_content_map.json", C.content_map_json())
     write("/index.html", C.page_home())
     write("/about/index.html", C.page_about())
     write("/contact/index.html", C.page_contact())
     write("/thanks/index.html", C.page_thanks())
     write("/faq/index.html", C.page_faq())
     write("/warranty/index.html", C.page_warranty())
+    write("/glossary/index.html", C.page_glossary())
+    write("/guides/index.html", C.page_guides())
     write("/404.html", C.page_404())
     for s in SERVICES:
         write(f"/{s['slug']}/index.html", C.page_service_index(s))
