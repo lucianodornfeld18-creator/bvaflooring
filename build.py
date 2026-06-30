@@ -221,7 +221,7 @@ p{margin:0 0 1rem}
 .hero-trust span::before{content:"✓";color:var(--copper);font-weight:800}
 .stars{color:#F4C04E;letter-spacing:2px;font-size:1.05rem}
 .ecard{background:#fff;border-radius:18px;box-shadow:var(--sh-lg);padding:1.7rem;color:var(--text)}
-.ecard h3{color:var(--ink-2);font-size:1.18rem;margin-bottom:.3rem}
+.ecard h2{color:var(--ink-2);font-size:1.18rem;margin-bottom:.3rem;text-align:left}
 .ecard .sub{font-size:.9rem;color:var(--muted);margin-bottom:1.1rem}
 .ecard label{display:block;font-size:.78rem;font-weight:700;font-family:var(--fhead);color:var(--ink-2);margin:.6rem 0 .25rem;text-transform:uppercase;letter-spacing:.05em}
 .ecard input,.ecard select{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:9px;font-family:var(--fbody);font-size:.95rem;background:var(--paper);color:var(--text)}

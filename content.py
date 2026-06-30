@@ -350,7 +350,7 @@ def projects_gallery(slug=None, limit=None, heading=None, sub=None, bg=False, pr
             f'<div class="projgrid">{cards}</div></div></section>')
 
 def page_home():
-    title=f"Flooring Installation Bradenton FL | {BRAND}"
+    title=f"Flooring Installation in Bradenton, FL | {BRAND}"
     desc=clip("Flooring installation in Bradenton, Sarasota & Tampa Bay, FL — hardwood, waterproof "
           "vinyl plank, tile, laminate, stairs & refinishing. Licensed, insured. Free 24-hour estimate.")
     svc_cards="".join(
@@ -387,7 +387,7 @@ def page_home():
 <div class="hero-cta"><a href="/contact/#quote" class="btn btn-primary">Get My Free Quote</a>
 <a href="tel:{PHONE_E164}" class="btn btn-ghost">{SVG_PHONE} {PHONE_DISP}</a></div>
 <div class="hero-trust"><span>Licensed &amp; insured</span><span>{EXPERIENCE} experience</span><span>52-Point Standard</span><span>{STARS} workmanship</span></div></div>
-<div class="ecard"><h3>Free Flooring Estimate</h3><p class="sub">No obligation · reply within 24 hours</p>
+<div class="ecard"><h2>Free Flooring Estimate</h2><p class="sub">No obligation · reply within 24 hours</p>
 {quote_form(compact=True)}</div></div></section>
 
 <div class="proof"><div class="wrap"><div class="proof-row">
@@ -590,7 +590,7 @@ def page_contact():
      f"""<section class="phero"><div class="wrap"><span class="eyebrow">Contact</span>
 <h1>Get Your <b>Free Estimate</b></h1><p>Call, text, or WhatsApp — we reply within 24 hours, 7 days a week. Free measurement, no obligation.</p></div></section>
 <section class="intro"><div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;max-width:1000px;align-items:start">
-<div class="ecard" id="quote" style="box-shadow:var(--sh-lg)"><h3>Request a Free Quote</h3><p class="sub">Reply within 24 hours · no obligation</p>
+<div class="ecard" id="quote" style="box-shadow:var(--sh-lg)"><h2>Request a Free Quote</h2><p class="sub">Reply within 24 hours · no obligation</p>
 {quote_form(compact=False)}</div>
 <div><h2 style="margin-bottom:1rem">Talk to a Real Person</h2>
 <p style="color:var(--muted)">No call centers, no phone trees. You reach the people who actually install your floor.</p>
