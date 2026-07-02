@@ -49,12 +49,13 @@ BANK = [
     {"service": "stairs",   "city": "Lakewood Ranch", "file": "vinyl-stair-tread-installation-lakewood-ranch-fl.jpg","desc": "a vinyl stair tread and riser installation in Lakewood Ranch"},
 ]
 
-# Templates GBP (sem hashtag; keyword+cidade na 1a frase; CTA + telefone no fim).
+# Templates GBP — SEM telefone/URL no texto (o Google rejeita; o botao "Call" ja resolve).
+# Foco descritivo/informativo, promo minima; keyword+cidade na 1a frase.
 GBP_TEMPLATES = [
-    "{kw_title} in {city}, FL — {desc}. Every BVA Flooring job runs through our {standard}, built for Florida humidity with documented moisture testing. Licensed & insured, with a free written estimate in 24 hours. Call {phone}.",
-    "Recent BVA project: {desc}, in {city}, FL. Comparing flooring contractors in {city}? Ask to see real local work — this is ours. One accountable local crew, licensed & insured. Free estimate: {phone}.",
-    "Why {city} homeowners choose BVA for {kw}: moisture-tested installs, honest written pricing, and our {standard}. {desc}. Free in-home estimate within 24 hours — {phone}.",
-    "{kw_title} done right in {city}, FL. {desc}. New name, old-school standard: one crew, measurable quality, and a written workmanship warranty. Free 24-hour estimate at {phone}.",
+    "{kw_title} in {city}, FL — {desc}. Every BVA Flooring job runs through our {standard}, built for Florida humidity with documented moisture testing. Licensed and insured, with a written workmanship warranty. Tap Call for a free 24-hour estimate.",
+    "Recent BVA project: {desc}, in {city}, FL. Comparing flooring contractors in {city}? Ask to see real local work — this is ours. One accountable local crew, moisture-tested installs, licensed and insured.",
+    "Why {city} homeowners choose BVA for {kw}: moisture-tested installs, honest written pricing, and our {standard}. {desc}. Licensed and insured across the Gulf Coast — tap Call for a free estimate.",
+    "{kw_title} done right in {city}, FL. {desc}. New name, old-school standard: one accountable crew, measurable quality, and a written workmanship warranty on every floor.",
 ]
 
 
