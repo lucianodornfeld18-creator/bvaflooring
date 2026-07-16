@@ -80,7 +80,7 @@ def build(weeks, start):
             d = start + timedelta(days=w * 7 + gbp_days[slot])
             posts.append({
                 "date": d.strftime("%Y-%m-%dT") + "09:00:00",
-                "channel": "gbp",
+                "channel": "gbp_bva",
                 "service": img["service"], "city": city,
                 "image_url": f"{IMG_BASE}/{img['file']}",
                 "caption": caption,

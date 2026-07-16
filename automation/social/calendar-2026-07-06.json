@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-07-07T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "hardwood",
     "city": "Bradenton",
     "image_url": "https://bvaflooring.com/images/social/hardwood-flooring-installation-bradenton-fl.jpg",
@@ -12,7 +12,7 @@
   },
   {
     "date": "2026-07-09T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "hardwood",
     "city": "Lakewood Ranch",
     "image_url": "https://bvaflooring.com/images/social/engineered-hardwood-flooring-lakewood-ranch-fl.jpg",
@@ -23,7 +23,7 @@
   },
   {
     "date": "2026-07-11T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "hardwood",
     "city": "Sarasota",
     "image_url": "https://bvaflooring.com/images/social/hardwood-floor-installation-sarasota-fl.jpg",
@@ -34,7 +34,7 @@
   },
   {
     "date": "2026-07-14T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "Sarasota",
     "image_url": "https://bvaflooring.com/images/social/luxury-vinyl-plank-flooring-sarasota-fl.jpg",
@@ -45,7 +45,7 @@
   },
   {
     "date": "2026-07-16T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "Tampa",
     "image_url": "https://bvaflooring.com/images/social/waterproof-vinyl-plank-installation-tampa-fl.jpg",
@@ -56,7 +56,7 @@
   },
   {
     "date": "2026-07-18T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "Venice",
     "image_url": "https://bvaflooring.com/images/social/luxury-vinyl-plank-flooring-venice-fl.jpg",
@@ -67,7 +67,7 @@
   },
   {
     "date": "2026-07-21T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "St. Petersburg",
     "image_url": "https://bvaflooring.com/images/social/wood-look-vinyl-plank-flooring-st-petersburg-fl.jpg",
@@ -78,7 +78,7 @@
   },
   {
     "date": "2026-07-23T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "Palmetto",
     "image_url": "https://bvaflooring.com/images/social/glue-down-vinyl-plank-flooring-palmetto-fl.jpg",
@@ -89,7 +89,7 @@
   },
   {
     "date": "2026-07-25T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "vinyl",
     "city": "Parrish",
     "image_url": "https://bvaflooring.com/images/social/glue-down-luxury-vinyl-flooring-parrish-fl.jpg",
@@ -100,7 +100,7 @@
   },
   {
     "date": "2026-07-28T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "stairs",
     "city": "Bradenton",
     "image_url": "https://bvaflooring.com/images/social/vinyl-stair-tread-installation-bradenton-fl.jpg",
@@ -111,7 +111,7 @@
   },
   {
     "date": "2026-07-30T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
     "service": "stairs",
     "city": "Tampa",
     "image_url": "https://bvaflooring.com/images/social/waterproof-vinyl-stair-treads-tampa-fl.jpg",
@@ -122,7 +122,139 @@
   },
   {
     "date": "2026-08-01T09:00:00",
-    "channel": "gbp",
+    "channel": "gbp_bva",
+    "service": "stairs",
+    "city": "Lakewood Ranch",
+    "image_url": "https://bvaflooring.com/images/social/vinyl-stair-tread-installation-lakewood-ranch-fl.jpg",
+    "caption": "Vinyl stair tread installation done right in Lakewood Ranch, FL. a vinyl stair tread and riser installation in Lakewood Ranch. New name, old-school standard: one accountable crew, measurable quality, and a written workmanship warranty on every floor.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/lakewood-ranch/"
+  },
+  {
+    "date": "2026-08-04T09:00:00",
+    "channel": "gbp_bva",
+    "service": "hardwood",
+    "city": "Bradenton",
+    "image_url": "https://bvaflooring.com/images/social/hardwood-flooring-installation-bradenton-fl.jpg",
+    "caption": "Hardwood flooring installation in Bradenton, FL — a solid hardwood floor installed in a Bradenton living room. Every BVA Flooring job runs through our 52-Point Floor-Ready Standard, built for Florida humidity with documented moisture testing. Licensed and insured, with a written workmanship warranty. Tap Call for a free 24-hour estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/bradenton/"
+  },
+  {
+    "date": "2026-08-06T09:00:00",
+    "channel": "gbp_bva",
+    "service": "hardwood",
+    "city": "Lakewood Ranch",
+    "image_url": "https://bvaflooring.com/images/social/engineered-hardwood-flooring-lakewood-ranch-fl.jpg",
+    "caption": "Recent BVA project: engineered hardwood installed in a Lakewood Ranch home, in Lakewood Ranch, FL. Comparing flooring contractors in Lakewood Ranch? Ask to see real local work — this is ours. One accountable local crew, moisture-tested installs, licensed and insured.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/lakewood-ranch/"
+  },
+  {
+    "date": "2026-08-08T09:00:00",
+    "channel": "gbp_bva",
+    "service": "hardwood",
+    "city": "Sarasota",
+    "image_url": "https://bvaflooring.com/images/social/hardwood-floor-installation-sarasota-fl.jpg",
+    "caption": "Why Sarasota homeowners choose BVA for hardwood flooring installation: moisture-tested installs, honest written pricing, and our 52-Point Floor-Ready Standard. a hardwood floor installation in a Sarasota home. Licensed and insured across the Gulf Coast — tap Call for a free estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/sarasota/"
+  },
+  {
+    "date": "2026-08-11T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "Sarasota",
+    "image_url": "https://bvaflooring.com/images/social/luxury-vinyl-plank-flooring-sarasota-fl.jpg",
+    "caption": "Luxury vinyl plank (lvp) installation done right in Sarasota, FL. 100% waterproof luxury vinyl plank in a Sarasota home. New name, old-school standard: one accountable crew, measurable quality, and a written workmanship warranty on every floor.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/sarasota/"
+  },
+  {
+    "date": "2026-08-13T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "Tampa",
+    "image_url": "https://bvaflooring.com/images/social/waterproof-vinyl-plank-installation-tampa-fl.jpg",
+    "caption": "Luxury vinyl plank (lvp) installation in Tampa, FL — a waterproof vinyl plank installation in Tampa. Every BVA Flooring job runs through our 52-Point Floor-Ready Standard, built for Florida humidity with documented moisture testing. Licensed and insured, with a written workmanship warranty. Tap Call for a free 24-hour estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/tampa/"
+  },
+  {
+    "date": "2026-08-15T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "Venice",
+    "image_url": "https://bvaflooring.com/images/social/luxury-vinyl-plank-flooring-venice-fl.jpg",
+    "caption": "Recent BVA project: luxury vinyl plank (LVP) flooring in a Venice home, in Venice, FL. Comparing flooring contractors in Venice? Ask to see real local work — this is ours. One accountable local crew, moisture-tested installs, licensed and insured.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/venice/"
+  },
+  {
+    "date": "2026-08-18T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "St. Petersburg",
+    "image_url": "https://bvaflooring.com/images/social/wood-look-vinyl-plank-flooring-st-petersburg-fl.jpg",
+    "caption": "Why St. Petersburg homeowners choose BVA for luxury vinyl plank (LVP) installation: moisture-tested installs, honest written pricing, and our 52-Point Floor-Ready Standard. wood-look vinyl plank in a St. Petersburg room. Licensed and insured across the Gulf Coast — tap Call for a free estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/st-petersburg/"
+  },
+  {
+    "date": "2026-08-20T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "Palmetto",
+    "image_url": "https://bvaflooring.com/images/social/glue-down-vinyl-plank-flooring-palmetto-fl.jpg",
+    "caption": "Luxury vinyl plank (lvp) installation done right in Palmetto, FL. glue-down luxury vinyl plank in Palmetto. New name, old-school standard: one accountable crew, measurable quality, and a written workmanship warranty on every floor.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/palmetto/"
+  },
+  {
+    "date": "2026-08-22T09:00:00",
+    "channel": "gbp_bva",
+    "service": "vinyl",
+    "city": "Parrish",
+    "image_url": "https://bvaflooring.com/images/social/glue-down-luxury-vinyl-flooring-parrish-fl.jpg",
+    "caption": "Luxury vinyl plank (lvp) installation in Parrish, FL — glue-down luxury vinyl flooring in a Parrish home. Every BVA Flooring job runs through our 52-Point Floor-Ready Standard, built for Florida humidity with documented moisture testing. Licensed and insured, with a written workmanship warranty. Tap Call for a free 24-hour estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/parrish/"
+  },
+  {
+    "date": "2026-08-25T09:00:00",
+    "channel": "gbp_bva",
+    "service": "stairs",
+    "city": "Bradenton",
+    "image_url": "https://bvaflooring.com/images/social/vinyl-stair-tread-installation-bradenton-fl.jpg",
+    "caption": "Recent BVA project: a vinyl stair tread installation in Bradenton, in Bradenton, FL. Comparing flooring contractors in Bradenton? Ask to see real local work — this is ours. One accountable local crew, moisture-tested installs, licensed and insured.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/bradenton/"
+  },
+  {
+    "date": "2026-08-27T09:00:00",
+    "channel": "gbp_bva",
+    "service": "stairs",
+    "city": "Tampa",
+    "image_url": "https://bvaflooring.com/images/social/waterproof-vinyl-stair-treads-tampa-fl.jpg",
+    "caption": "Why Tampa homeowners choose BVA for vinyl stair tread installation: moisture-tested installs, honest written pricing, and our 52-Point Floor-Ready Standard. waterproof vinyl stair treads installed in Tampa. Licensed and insured across the Gulf Coast — tap Call for a free estimate.",
+    "cta_type": "CALL",
+    "cta_phone": "(941) 807-0339",
+    "link": "https://bvaflooring.com/tampa/"
+  },
+  {
+    "date": "2026-08-29T09:00:00",
+    "channel": "gbp_bva",
     "service": "stairs",
     "city": "Lakewood Ranch",
     "image_url": "https://bvaflooring.com/images/social/vinyl-stair-tread-installation-lakewood-ranch-fl.jpg",
